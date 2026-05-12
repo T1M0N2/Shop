@@ -1,102 +1,675 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>On Top – Täglicher Spruch</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef Mode: Activated 🍳</title>
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&family=New+York:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --sub: #6e6e73;
+    --accent: #0071e3;
+    --accent2: #ff6b35;
+    --accent3: #30d158;
+    --border: rgba(0,0,0,0.08);
+    --shadow: 0 4px 24px rgba(0,0,0,0.07);
+    --radius: 20px;
+  }
 
-  <!-- Web App Manifest -->
-  <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#111111" />
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- Icons für PWA und Website -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
-  <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+  body {
+    font-family: -apple-system, 'SF Pro Display', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 48px;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+    animation: fadeDown 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'New York', Georgia, serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    animation: fadeDown 0.6s 0.1s ease both;
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--sub);
+    max-width: 540px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    animation: fadeDown 0.6s 0.2s ease both;
+  }
 
-  <style>
-    :root {
-      --bg: #111;
-      --text: #f5f5f5;
-      --muted: #888;
-      --accent: #fff;
-      --btn-bg: #222;
-      --btn-hover: #333;
-    }
+  /* Meal selector tabs */
+  .tab-bar {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+  .tab {
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--sub);
+    white-space: nowrap;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--accent); }
+  .tab.active {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+  }
 
-    * {
-      box-sizing: border-box;
-    }
+  /* Recipe cards container */
+  .recipes-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-    }
+  .recipe-panel { display: none; animation: fadeUp 0.5s ease both; }
+  .recipe-panel.active { display: block; }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+  /* Big recipe card */
+  .recipe-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
 
-    #quote {
-      font-size: 1.25rem;
-      padding: 1rem 1.5rem;
-      max-width: 600px;
-      line-height: 1.6;
-    }
+  .recipe-header {
+    padding: 36px 36px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .recipe-emoji {
+    font-size: 52px;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+  }
+  .recipe-title-group { flex: 1; }
+  .recipe-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .recipe-card.pre .recipe-tag { color: #ff6b35; }
+  .recipe-card.game .recipe-tag { color: #af52de; }
+  .recipe-card.recovery .recipe-tag { color: #30d158; }
 
-    .btn {
-      background-color: var(--btn-bg);
-      border: 1px solid var(--accent);
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      color: var(--text);
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: background 0.2s;
-    }
+  .recipe-title {
+    font-family: 'New York', Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .recipe-sub { font-size: 14px; color: var(--sub); }
 
-    .btn:hover {
-      background-color: var(--btn-hover);
-    }
+  /* Servings control */
+  .servings-row {
+    padding: 20px 36px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .servings-label { font-size: 14px; color: var(--sub); font-weight: 500; flex: 1; }
+  .servings-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg);
+    border-radius: 100px;
+    padding: 6px 8px;
+  }
+  .srv-btn {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s ease;
+    color: var(--text);
+    line-height: 1;
+  }
+  .srv-btn:hover { transform: scale(1.1); }
+  .srv-btn:active { transform: scale(0.95); }
+  .srv-count {
+    font-size: 17px;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+  }
 
-    .info {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-  </style>
+  /* Two-column layout */
+  .recipe-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  @media (max-width: 600px) {
+    .recipe-body { grid-template-columns: 1fr; }
+    .recipe-header { flex-direction: column; padding: 24px; }
+    .servings-row { padding: 16px 24px; }
+    .ingredients-col, .steps-col { padding: 24px; }
+  }
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('✅ Service Worker registriert'))
-          .catch(err => console.error('❌ Service Worker Fehler:', err));
-      });
-    }
-  </script>
+  .ingredients-col {
+    padding: 28px 36px;
+    border-right: 1px solid var(--border);
+  }
+  .steps-col { padding: 28px 36px; }
+
+  .col-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sub);
+    margin-bottom: 18px;
+  }
+
+  /* Ingredient pills */
+  .ingredient-list { list-style: none; }
+  .ingredient-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    transition: opacity 0.2s;
+  }
+  .ingredient-list li:last-child { border-bottom: none; }
+  .ing-amount {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 56px;
+    color: var(--accent);
+    font-size: 14px;
+  }
+  .recipe-card.pre .ing-amount { color: #ff6b35; }
+  .recipe-card.game .ing-amount { color: #af52de; }
+  .recipe-card.recovery .ing-amount { color: #30d158; }
+
+  .ing-name { color: var(--text); }
+  .ing-optional {
+    font-size: 11px;
+    color: var(--sub);
+    background: var(--bg);
+    padding: 2px 7px;
+    border-radius: 100px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* Steps */
+  .step-list { list-style: none; }
+  .step-item {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-item.done { opacity: 0.38; text-decoration: line-through; }
+  .step-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .step-item.done .step-num {
+    background: var(--accent3);
+    color: white;
+  }
+  .recipe-card.pre .step-item.done .step-num { background: #ff6b35; }
+  .recipe-card.game .step-item.done .step-num { background: #af52de; }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    padding: 0 36px 28px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--sub);
+    margin-bottom: 8px;
+  }
+  .progress-track {
+    height: 4px;
+    background: var(--bg);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent3);
+    border-radius: 100px;
+    transition: width 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .recipe-card.pre .progress-fill { background: #ff6b35; }
+  .recipe-card.game .progress-fill { background: #af52de; }
+
+  /* Fun completion toast */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--text);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999;
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Project info strip */
+  .project-strip {
+    max-width: 880px;
+    margin: 0 auto 24px;
+    padding: 0 24px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .project-card {
+    background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3c 100%);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .project-icon { font-size: 36px; flex-shrink: 0; }
+  .project-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .project-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+  .project-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .project-tag-pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* Keyframes */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
-
 <body>
-  <h1>🌟 On Top</h1>
-  <div id="quote">Lade Spruch...</div>
-  <button class="btn" onclick="requestNotification()">🔔 Erinnerung aktivieren</button>
-  <div class="info">Du bekommst täglich einen neuen Spruch. Auch offline.</div>
 
-  <script src="app.js"></script>
+<div class="hero">
+  <div class="hero-badge">🎬 English Cooking Project</div>
+  <h1>Athlete's Kitchen 🏆</h1>
+  <p>Three performance meals — tap a step to check it off, scale servings to your needs.</p>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="switchTab('pre')">🏋️ Pre-Training</div>
+  <div class="tab" onclick="switchTab('game')">⚽ Before the Game</div>
+  <div class="tab" onclick="switchTab('recovery')">🐟 Recovery</div>
+</div>
+
+<!-- ── PRE-TRAINING ── -->
+<div class="recipes-wrap">
+
+  <div id="panel-pre" class="recipe-panel active">
+    <div class="recipe-card pre">
+      <div class="recipe-header">
+        <div class="recipe-emoji">🍚</div>
+        <div class="recipe-title-group">
+          <div class="recipe-tag">Perfect Pre-Training Meal</div>
+          <div class="recipe-title">Chicken Rice Bowl</div>
+          <div class="recipe-sub">High-carb · High-protein · Easy to digest</div>
+        </div>
+      </div>
+
+      <div class="servings-row">
+        <div class="servings-label">Servings</div>
+        <div class="servings-ctrl">
+          <button class="srv-btn" onclick="changeServ('pre',-1)">−</button>
+          <div class="srv-count" id="srv-pre">1</div>
+          <button class="srv-btn" onclick="changeServ('pre',1)">+</button>
+        </div>
+      </div>
+
+      <div class="recipe-body">
+        <div class="ingredients-col">
+          <div class="col-title">Ingredients</div>
+          <ul class="ingredient-list" id="ing-pre">
+            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Rice</span></li>
+            <li><span class="ing-amount" data-base="150" data-unit="g">150 g</span><span class="ing-name">Chicken breast</span></li>
+            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Broccoli</span></li>
+            <li><span class="ing-amount" data-base="0.5" data-unit="pc">½</span><span class="ing-name">Bell pepper</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="tsp">1 tsp</span><span class="ing-name">Olive oil</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt & pepper</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Paprika / garlic powder</span><span class="ing-optional">optional</span></li>
+          </ul>
+        </div>
+        <div class="steps-col">
+          <div class="col-title">Steps — tap to check off</div>
+          <ul class="step-list" id="steps-pre">
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">1</div><span>Rinse rice and cook with 200 ml water + a pinch of salt.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">2</div><span>Bring to a boil, then simmer 10–12 min. Let rest 5 min.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">3</div><span>Cut broccoli into florets and slice the pepper.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">4</div><span>Cut chicken into small pieces.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">5</div><span>Heat oil in a pan, cook chicken 6–8 min. Season well.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">6</div><span>Steam or sauté vegetables.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">7</div><span>Serve everything in a bowl. 🎉</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-label">
+          <span id="prog-label-pre">0 of 7 steps done</span>
+          <span id="prog-pct-pre">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill-pre" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BEFORE THE GAME ── -->
+  <div id="panel-game" class="recipe-panel">
+    <div class="recipe-card game">
+      <div class="recipe-header">
+        <div class="recipe-emoji">🍝</div>
+        <div class="recipe-title-group">
+          <div class="recipe-tag">Meal Before the Game</div>
+          <div class="recipe-title">Pasta with Chicken & Tomato Sauce</div>
+          <div class="recipe-sub">Carb-loading · Lean protein · Quick prep</div>
+        </div>
+      </div>
+
+      <div class="servings-row">
+        <div class="servings-label">Servings</div>
+        <div class="servings-ctrl">
+          <button class="srv-btn" onclick="changeServ('game',-1)">−</button>
+          <div class="srv-count" id="srv-game">1</div>
+          <button class="srv-btn" onclick="changeServ('game',1)">+</button>
+        </div>
+      </div>
+
+      <div class="recipe-body">
+        <div class="ingredients-col">
+          <div class="col-title">Ingredients</div>
+          <ul class="ingredient-list" id="ing-game">
+            <li><span class="ing-amount" data-base="110" data-unit="g">110 g</span><span class="ing-name">Pasta</span></li>
+            <li><span class="ing-amount" data-base="150" data-unit="g">150 g</span><span class="ing-name">Chicken breast</span></li>
+            <li><span class="ing-amount" data-base="150" data-unit="ml">150 ml</span><span class="ing-name">Tomato sauce</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Parmesan</span><span class="ing-optional">optional</span></li>
+          </ul>
+        </div>
+        <div class="steps-col">
+          <div class="col-title">Steps — tap to check off</div>
+          <ul class="step-list" id="steps-game">
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">1</div><span>Boil salted water.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">2</div><span>Cook pasta 8–10 minutes.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">3</div><span>Cut chicken into pieces.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">4</div><span>Cook chicken in pan 6–8 minutes.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">5</div><span>Add tomato sauce and heat 3–5 minutes.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">6</div><span>Mix sauce with pasta.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">7</div><span>Serve — optional: add parmesan. 🏆</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-label">
+          <span id="prog-label-game">0 of 7 steps done</span>
+          <span id="prog-pct-game">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill-game" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RECOVERY ── -->
+  <div id="panel-recovery" class="recipe-panel">
+    <div class="recipe-card recovery">
+      <div class="recipe-header">
+        <div class="recipe-emoji">🐟</div>
+        <div class="recipe-title-group">
+          <div class="recipe-tag">Recovery Meal After the Match</div>
+          <div class="recipe-title">Salmon with Rice & Broccoli</div>
+          <div class="recipe-sub">Omega-3 · Anti-inflammatory · Muscle repair</div>
+        </div>
+      </div>
+
+      <div class="servings-row">
+        <div class="servings-label">Servings</div>
+        <div class="servings-ctrl">
+          <button class="srv-btn" onclick="changeServ('recovery',-1)">−</button>
+          <div class="srv-count" id="srv-recovery">1</div>
+          <button class="srv-btn" onclick="changeServ('recovery',1)">+</button>
+        </div>
+      </div>
+
+      <div class="recipe-body">
+        <div class="ingredients-col">
+          <div class="col-title">Ingredients</div>
+          <ul class="ingredient-list" id="ing-recovery">
+            <li><span class="ing-amount" data-base="150" data-unit="g">150 g</span><span class="ing-name">Salmon</span></li>
+            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Rice</span></li>
+            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Broccoli</span></li>
+            <li><span class="ing-amount" data-base="0.5" data-unit="pc">½</span><span class="ing-name">Lemon</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt & pepper</span></li>
+          </ul>
+        </div>
+        <div class="steps-col">
+          <div class="col-title">Steps — tap to check off</div>
+          <ul class="step-list" id="steps-recovery">
+            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">1</div><span>Cook rice 10–12 minutes.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">2</div><span>Steam broccoli 5–6 minutes.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">3</div><span>Cook salmon 4–5 minutes per side.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">4</div><span>Season everything.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">5</div><span>Serve with fresh lemon juice. 💪</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-label">
+          <span id="prog-label-recovery">0 of 5 steps done</span>
+          <span id="prog-pct-recovery">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill-recovery" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Info -->
+  <div class="project-strip" style="padding:0; margin-top:0;">
+    <div class="project-card">
+      <div class="project-icon">🎬</div>
+      <div class="project-text">
+        <h3>English Cooking Video Project</h3>
+        <p>Learning goal: improve spoken English & pronunciation by creating a full cooking video — scripted, practiced, and recorded solo.</p>
+        <div class="project-tags">
+          <span class="project-tag-pill">Speaking</span>
+          <span class="project-tag-pill">Pronunciation</span>
+          <span class="project-tag-pill">Solo Project</span>
+          <span class="project-tag-pill">Video Production</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Tab switching
+  function switchTab(id) {
+    document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Servings state
+  const servings = { pre: 1, game: 1, recovery: 1 };
+
+  function changeServ(id, delta) {
+    servings[id] = Math.max(1, Math.min(10, servings[id] + delta));
+    document.getElementById('srv-' + id).textContent = servings[id];
+    updateIngredients(id);
+  }
+
+  function fmt(base, unit, mult) {
+    const val = base * mult;
+    if (unit === 'pc') {
+      if (val === 0.5) return '½';
+      if (val === 1.5) return '1½';
+      return Number.isInteger(val) ? val : val.toFixed(1);
+    }
+    if (unit === '') return '—';
+    const rounded = Math.round(val);
+    return rounded + ' ' + unit;
+  }
+
+  function updateIngredients(id) {
+    const mult = servings[id];
+    document.querySelectorAll('#ing-' + id + ' .ing-amount').forEach(el => {
+      const base = parseFloat(el.dataset.base);
+      const unit = el.dataset.unit;
+      el.textContent = fmt(base, unit, mult);
+    });
+  }
+
+  // Step toggling + progress
+  const stepCounts = { pre: 7, game: 7, recovery: 5 };
+  const doneCounts = { pre: 0, game: 0, recovery: 0 };
+
+  function toggleStep(el, id) {
+    const wasDone = el.classList.contains('done');
+    el.classList.toggle('done');
+    doneCounts[id] += wasDone ? -1 : 1;
+    updateProgress(id);
+  }
+
+  function updateProgress(id) {
+    const done = doneCounts[id];
+    const total = stepCounts[id];
+    const pct = Math.round((done / total) * 100);
+
+    document.getElementById('prog-fill-' + id).style.width = pct + '%';
+    document.getElementById('prog-label-' + id).textContent = done + ' of ' + total + ' steps done';
+    document.getElementById('prog-pct-' + id).textContent = pct + '%';
+
+    if (done === total) {
+      const msgs = {
+        pre: "You're fuelled and ready! 🔥",
+        game: "Time to dominate the pitch! ⚽",
+        recovery: "Recovery unlocked. Sleep well! 💤"
+      };
+      showToast(msgs[id]);
+    }
+  }
+
+  // Toast
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
 </body>
 </html>
