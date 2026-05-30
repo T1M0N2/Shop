@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chef Mode: Activated 🍳</title>
-<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&family=New+York:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Athlete's Kitchen 🏆</title>
+<link href="https://fonts.googleapis.com/css2?family=New+York:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f5f5f7;
@@ -12,372 +12,158 @@
     --text: #1d1d1f;
     --sub: #6e6e73;
     --accent: #0071e3;
-    --accent2: #ff6b35;
-    --accent3: #30d158;
     --border: rgba(0,0,0,0.08);
     --shadow: 0 4px 24px rgba(0,0,0,0.07);
     --radius: 20px;
+    --pre: #ff6b35;
+    --recovery: #30d158;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: -apple-system, 'SF Pro Display', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
 
   /* Hero */
-  .hero {
-    text-align: center;
-    padding: 80px 24px 48px;
-    position: relative;
-  }
-  .hero-badge {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin-bottom: 18px;
-    animation: fadeDown 0.6s ease both;
-  }
-  .hero h1 {
-    font-family: 'New York', Georgia, serif;
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    animation: fadeDown 0.6s 0.1s ease both;
-  }
-  .hero p {
-    font-size: 17px;
-    color: var(--sub);
-    max-width: 540px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
-    animation: fadeDown 0.6s 0.2s ease both;
-  }
+  .hero { text-align:center; padding:70px 24px 40px; }
+  .hero-badge { display:inline-block; background:var(--accent); color:white; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:100px; margin-bottom:16px; animation:fadeDown .6s ease both; }
+  .hero h1 { font-family:'New York',Georgia,serif; font-size:clamp(32px,6vw,60px); font-weight:600; letter-spacing:-.03em; line-height:1.1; margin-bottom:14px; animation:fadeDown .6s .1s ease both; }
+  .hero p { font-size:16px; color:var(--sub); max-width:500px; margin:0 auto 36px; line-height:1.6; animation:fadeDown .6s .2s ease both; }
 
-  /* Meal selector tabs */
-  .tab-bar {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-    animation: fadeDown 0.6s 0.3s ease both;
-  }
-  .tab {
-    padding: 10px 20px;
-    border-radius: 100px;
-    border: 1.5px solid var(--border);
-    background: var(--card);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: var(--sub);
-    white-space: nowrap;
-  }
-  .tab:hover { border-color: var(--accent); color: var(--accent); }
-  .tab.active {
-    background: var(--text);
-    color: white;
-    border-color: var(--text);
-  }
+  /* Tabs */
+  .tab-bar { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:44px; animation:fadeDown .6s .3s ease both; }
+  .tab { padding:10px 20px; border-radius:100px; border:1.5px solid var(--border); background:var(--card); font-size:14px; font-weight:500; cursor:pointer; transition:all .2s; color:var(--sub); white-space:nowrap; }
+  .tab:hover { border-color:var(--accent); color:var(--accent); }
+  .tab.active { background:var(--text); color:white; border-color:var(--text); }
 
-  /* Recipe cards container */
-  .recipes-wrap {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
+  /* Wrap */
+  .recipes-wrap { max-width:880px; margin:0 auto; padding:0 24px 80px; }
+  .recipe-panel { display:none; animation:fadeUp .5s ease both; }
+  .recipe-panel.active { display:block; }
 
-  .recipe-panel { display: none; animation: fadeUp 0.5s ease both; }
-  .recipe-panel.active { display: block; }
+  /* Card */
+  .recipe-card { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-bottom:24px; }
+  .recipe-header { padding:32px 36px 24px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; gap:18px; }
+  .recipe-emoji { font-size:48px; line-height:1; flex-shrink:0; }
+  .recipe-title-group { flex:1; }
+  .recipe-tag { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-bottom:5px; }
+  .pre .recipe-tag { color:var(--pre); }
+  .recovery .recipe-tag { color:var(--recovery); }
+  .recipe-title { font-family:'New York',Georgia,serif; font-size:24px; font-weight:600; letter-spacing:-.02em; margin-bottom:5px; }
+  .recipe-sub { font-size:14px; color:var(--sub); }
 
-  /* Big recipe card */
-  .recipe-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 24px;
-  }
+  /* Servings */
+  .servings-row { padding:18px 36px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:16px; }
+  .servings-label { font-size:14px; color:var(--sub); font-weight:500; flex:1; }
+  .servings-ctrl { display:flex; align-items:center; gap:12px; background:var(--bg); border-radius:100px; padding:5px 8px; }
+  .srv-btn { width:28px; height:28px; border-radius:50%; border:none; background:white; box-shadow:0 1px 4px rgba(0,0,0,.12); font-size:17px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform .15s; color:var(--text); }
+  .srv-btn:hover { transform:scale(1.1); }
+  .srv-btn:active { transform:scale(.95); }
+  .srv-count { font-size:16px; font-weight:600; min-width:22px; text-align:center; }
 
-  .recipe-header {
-    padding: 36px 36px 28px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
+  /* Body grid */
+  .recipe-body { display:grid; grid-template-columns:1fr 1fr; }
+  @media(max-width:600px) {
+    .recipe-body { grid-template-columns:1fr; }
+    .recipe-header { flex-direction:column; padding:22px; }
+    .servings-row { padding:14px 22px; }
+    .ingredients-col, .steps-col, .veggie-col, .smoothie-col { padding:20px 22px; }
   }
-  .recipe-emoji {
-    font-size: 52px;
-    line-height: 1;
-    flex-shrink: 0;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-  }
-  .recipe-title-group { flex: 1; }
-  .recipe-tag {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .recipe-card.pre .recipe-tag { color: #ff6b35; }
-  .recipe-card.game .recipe-tag { color: #af52de; }
-  .recipe-card.recovery .recipe-tag { color: #30d158; }
+  .ingredients-col { padding:26px 36px; border-right:1px solid var(--border); }
+  .steps-col { padding:26px 36px; }
+  .col-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:var(--sub); margin-bottom:16px; }
 
-  .recipe-title {
-    font-family: 'New York', Georgia, serif;
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-  }
-  .recipe-sub { font-size: 14px; color: var(--sub); }
-
-  /* Servings control */
-  .servings-row {
-    padding: 20px 36px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .servings-label { font-size: 14px; color: var(--sub); font-weight: 500; flex: 1; }
-  .servings-ctrl {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--bg);
-    border-radius: 100px;
-    padding: 6px 8px;
-  }
-  .srv-btn {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: none;
-    background: white;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-    font-size: 18px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.15s ease;
-    color: var(--text);
-    line-height: 1;
-  }
-  .srv-btn:hover { transform: scale(1.1); }
-  .srv-btn:active { transform: scale(0.95); }
-  .srv-count {
-    font-size: 17px;
-    font-weight: 600;
-    min-width: 24px;
-    text-align: center;
-  }
-
-  /* Two-column layout */
-  .recipe-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
-  @media (max-width: 600px) {
-    .recipe-body { grid-template-columns: 1fr; }
-    .recipe-header { flex-direction: column; padding: 24px; }
-    .servings-row { padding: 16px 24px; }
-    .ingredients-col, .steps-col { padding: 24px; }
-  }
-
-  .ingredients-col {
-    padding: 28px 36px;
-    border-right: 1px solid var(--border);
-  }
-  .steps-col { padding: 28px 36px; }
-
-  .col-title {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--sub);
-    margin-bottom: 18px;
-  }
-
-  /* Ingredient pills */
-  .ingredient-list { list-style: none; }
-  .ingredient-list li {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    transition: opacity 0.2s;
-  }
-  .ingredient-list li:last-child { border-bottom: none; }
-  .ing-amount {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    min-width: 56px;
-    color: var(--accent);
-    font-size: 14px;
-  }
-  .recipe-card.pre .ing-amount { color: #ff6b35; }
-  .recipe-card.game .ing-amount { color: #af52de; }
-  .recipe-card.recovery .ing-amount { color: #30d158; }
-
-  .ing-name { color: var(--text); }
-  .ing-optional {
-    font-size: 11px;
-    color: var(--sub);
-    background: var(--bg);
-    padding: 2px 7px;
-    border-radius: 100px;
-    margin-left: auto;
-    flex-shrink: 0;
-  }
+  /* Ingredients */
+  .ingredient-list { list-style:none; }
+  .ingredient-list li { display:flex; align-items:baseline; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); font-size:15px; }
+  .ingredient-list li:last-child { border-bottom:none; }
+  .ing-amount { font-weight:600; min-width:52px; font-size:14px; }
+  .pre .ing-amount { color:var(--pre); }
+  .recovery .ing-amount { color:var(--recovery); }
+  .ing-name { color:var(--text); }
+  .ing-optional { font-size:11px; color:var(--sub); background:var(--bg); padding:2px 7px; border-radius:100px; margin-left:auto; flex-shrink:0; }
 
   /* Steps */
-  .step-list { list-style: none; }
-  .step-item {
-    display: flex;
-    gap: 14px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    line-height: 1.5;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  .step-item:last-child { border-bottom: none; }
-  .step-item.done { opacity: 0.38; text-decoration: line-through; }
-  .step-num {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px;
-    font-weight: 600;
-    flex-shrink: 0;
-    margin-top: 2px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .step-item.done .step-num {
-    background: var(--accent3);
-    color: white;
-  }
-  .recipe-card.pre .step-item.done .step-num { background: #ff6b35; }
-  .recipe-card.game .step-item.done .step-num { background: #af52de; }
+  .step-list { list-style:none; }
+  .step-item { display:flex; gap:12px; padding:9px 0; border-bottom:1px solid var(--border); font-size:15px; line-height:1.5; cursor:pointer; }
+  .step-item:last-child { border-bottom:none; }
+  .step-item.done { opacity:.35; text-decoration:line-through; }
+  .step-num { width:22px; height:22px; border-radius:50%; background:var(--bg); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; flex-shrink:0; margin-top:2px; transition:background .2s,color .2s; }
+  .step-item.done .step-num { background:var(--recovery); color:white; }
+  .pre .step-item.done .step-num { background:var(--pre); }
 
-  /* Progress bar */
-  .progress-bar-wrap {
-    padding: 0 36px 28px;
-  }
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--sub);
-    margin-bottom: 8px;
-  }
-  .progress-track {
-    height: 4px;
-    background: var(--bg);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--accent3);
-    border-radius: 100px;
-    transition: width 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  .recipe-card.pre .progress-fill { background: #ff6b35; }
-  .recipe-card.game .progress-fill { background: #af52de; }
+  /* Progress */
+  .progress-bar-wrap { padding:0 36px 26px; }
+  .progress-label { display:flex; justify-content:space-between; font-size:12px; color:var(--sub); margin-bottom:7px; }
+  .progress-track { height:4px; background:var(--bg); border-radius:100px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--recovery); border-radius:100px; transition:width .4s cubic-bezier(.34,1.56,.64,1); }
+  .pre .progress-fill { background:var(--pre); }
 
-  /* Fun completion toast */
-  .toast {
-    position: fixed;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--text);
-    color: white;
-    padding: 14px 24px;
-    border-radius: 100px;
-    font-size: 15px;
-    font-weight: 500;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    z-index: 999;
-    white-space: nowrap;
+  /* ── Veggie picker ── */
+  .veggie-section { padding:20px 36px 26px; border-top:1px solid var(--border); }
+  .veggie-section .col-title { margin-bottom:14px; }
+  .veggie-grid { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .veggie-chip {
+    display:flex; align-items:center; gap:6px;
+    padding:7px 14px; border-radius:100px;
+    border:1.5px solid var(--border); background:var(--card);
+    font-size:13px; font-weight:500; cursor:pointer;
+    transition:all .18s; color:var(--sub); user-select:none;
   }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+  .veggie-chip:hover { border-color:var(--pre); color:var(--pre); }
+  .veggie-chip.selected { background:var(--pre); color:white; border-color:var(--pre); }
+  .veggie-selected-label { font-size:13px; color:var(--sub); min-height:20px; }
+  .veggie-selected-label span { color:var(--text); font-weight:500; }
+  .veggie-amount-row { display:flex; align-items:center; gap:14px; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+  .veggie-amount-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--sub); flex-shrink:0; }
+  .veggie-amount-val { font-size:20px; font-weight:700; color:var(--pre); font-variant-numeric:tabular-nums; min-width:52px; }
+  .veggie-amount-unit { font-size:13px; color:var(--sub); }
+  .veggie-slider { flex:1; accent-color:var(--pre); }
 
-  /* Project info strip */
-  .project-strip {
-    max-width: 880px;
-    margin: 0 auto 24px;
-    padding: 0 24px;
-    animation: fadeUp 0.6s 0.4s ease both;
+  /* ── Smoothie builder ── */
+  .smoothie-section { padding:20px 36px 28px; border-top:1px solid var(--border); }
+  .smoothie-section .col-title { margin-bottom:16px; }
+  .smoothie-grid { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .fruit-chip {
+    display:flex; align-items:center; gap:6px;
+    padding:7px 14px; border-radius:100px;
+    border:1.5px solid var(--border); background:var(--card);
+    font-size:13px; font-weight:500; cursor:pointer;
+    transition:all .18s; color:var(--sub); user-select:none;
   }
-  .project-card {
-    background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3c 100%);
-    border-radius: var(--radius);
-    padding: 28px 32px;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .project-icon { font-size: 36px; flex-shrink: 0; }
-  .project-text h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .project-text p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.5;
-  }
-  .project-tags {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .project-tag-pill {
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.8);
-  }
+  .fruit-chip:hover { border-color:var(--recovery); color:var(--recovery); }
+  .fruit-chip.selected { background:var(--recovery); color:white; border-color:var(--recovery); }
 
-  /* Keyframes */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .smoothie-inputs { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
+  @media(max-width:500px){ .smoothie-inputs { grid-template-columns:1fr; } }
+  .smoothie-input-group { display:flex; flex-direction:column; gap:6px; }
+  .smoothie-input-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--sub); }
+  .smoothie-slider { width:100%; accent-color:var(--recovery); }
+  .smoothie-val { font-size:22px; font-weight:700; color:var(--recovery); font-variant-numeric:tabular-nums; }
+  .smoothie-unit { font-size:13px; font-weight:400; color:var(--sub); }
+
+  .smoothie-liquid-toggle { display:flex; gap:8px; margin-bottom:16px; }
+  .liq-btn { padding:7px 16px; border-radius:100px; border:1.5px solid var(--border); background:var(--card); font-size:13px; font-weight:500; cursor:pointer; transition:all .18s; color:var(--sub); }
+  .liq-btn.active { background:var(--recovery); color:white; border-color:var(--recovery); }
+
+  .smoothie-summary {
+    background:var(--bg); border-radius:14px; padding:14px 18px;
+    font-size:13px; color:var(--sub); line-height:1.7;
+    min-height:48px;
   }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .smoothie-summary b { color:var(--text); }
+
+  /* Project card */
+  .project-card { background:linear-gradient(135deg,#1d1d1f 0%,#3a3a3c 100%); border-radius:var(--radius); padding:26px 30px; color:white; display:flex; align-items:center; gap:18px; margin-bottom:0; }
+  .project-icon { font-size:34px; flex-shrink:0; }
+  .project-text h3 { font-size:15px; font-weight:600; margin-bottom:4px; }
+  .project-text p { font-size:13px; color:rgba(255,255,255,.5); line-height:1.5; }
+  .project-tags { margin-top:9px; display:flex; flex-wrap:wrap; gap:6px; }
+  .project-tag-pill { font-size:11px; font-weight:500; padding:3px 10px; border-radius:100px; background:rgba(255,255,255,.12); color:rgba(255,255,255,.8); }
+
+  /* Toast */
+  .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--text); color:white; padding:13px 22px; border-radius:100px; font-size:14px; font-weight:500; box-shadow:0 8px 32px rgba(0,0,0,.2); transition:transform .4s cubic-bezier(.34,1.56,.64,1); z-index:999; white-space:nowrap; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
 </style>
 </head>
 <body>
@@ -385,25 +171,25 @@
 <div class="hero">
   <div class="hero-badge">🎬 English Cooking Project</div>
   <h1>Athlete's Kitchen 🏆</h1>
-  <p>Three performance meals — tap a step to check it off, scale servings to your needs.</p>
+  <p>Two performance meals — tap steps to check them off, pick your veggies, and build your recovery smoothie.</p>
 </div>
 
 <div class="tab-bar">
-  <div class="tab active" onclick="switchTab('pre')">🏋️ Pre-Training</div>
-  <div class="tab" onclick="switchTab('game')">⚽ Before the Game</div>
-  <div class="tab" onclick="switchTab('recovery')">🔋 Recovery</div>
+  <div class="tab active" onclick="switchTab('pre',this)">🏋️ Before Sport</div>
+  <div class="tab" onclick="switchTab('recovery',this)">🥤 Recovery Smoothie</div>
 </div>
 
-<!-- ── PRE-TRAINING ── -->
 <div class="recipes-wrap">
 
+  <!-- ── BEFORE SPORT ── -->
   <div id="panel-pre" class="recipe-panel active">
     <div class="recipe-card pre">
+
       <div class="recipe-header">
         <div class="recipe-emoji">🍚</div>
         <div class="recipe-title-group">
-          <div class="recipe-tag">Perfect Pre-Training Meal</div>
-          <div class="recipe-title">Chicken Rice Bowl</div>
+          <div class="recipe-tag">Pre-Sport Meal</div>
+          <div class="recipe-title">Rice with Chicken & Paprika</div>
           <div class="recipe-sub">High-carb · High-protein · Easy to digest</div>
         </div>
       </div>
@@ -421,25 +207,24 @@
         <div class="ingredients-col">
           <div class="col-title">Ingredients</div>
           <ul class="ingredient-list" id="ing-pre">
-            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Rice</span></li>
+            <li><span class="ing-amount" data-base="120" data-unit="g">120 g</span><span class="ing-name">Rice</span></li>
             <li><span class="ing-amount" data-base="150" data-unit="g">150 g</span><span class="ing-name">Chicken breast</span></li>
-            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Broccoli</span></li>
-            <li><span class="ing-amount" data-base="0.5" data-unit="pc">½</span><span class="ing-name">Bell pepper</span></li>
-            <li><span class="ing-amount" data-base="1" data-unit="tsp">1 tsp</span><span class="ing-name">Olive oil</span></li>
-            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt & pepper</span></li>
-            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Paprika / garlic powder</span><span class="ing-optional">optional</span></li>
+            <li><span class="ing-amount" id="ing-veggie-amt" style="color:var(--pre);font-weight:600;min-width:52px;font-size:14px;">—</span><span class="ing-name" id="ing-veggie-line">Vegetables <span style="font-size:12px;color:var(--sub);font-weight:400;">(choose below)</span></span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="tbsp">1 tbsp</span><span class="ing-name">Olive oil</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt, pepper & paprika spice</span></li>
+            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Garlic powder</span><span class="ing-optional">optional</span></li>
           </ul>
         </div>
         <div class="steps-col">
           <div class="col-title">Steps — tap to check off</div>
           <ul class="step-list" id="steps-pre">
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">1</div><span>Rinse rice and cook with water + a pinch of salt.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">2</div><span>Bring to a boil, then simmer 10–12 min. Let rest 5 min.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">3</div><span>Cut broccoli into florets and slice the pepper.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">4</div><span>Cut chicken into small pieces.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">5</div><span>Heat oil in a pan, cook chicken 6–8 min. Season well.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">6</div><span>Steam or sauté vegetables.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">7</div><span>Serve everything in a bowl. 🎉</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">1</div><span>Rinse rice, cook with double the water and a pinch of salt.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">2</div><span>Simmer on low heat 10–12 min, then let rest 5 min.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">3</div><span>Slice paprika and your chosen veggies.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">4</div><span>Cut chicken into pieces and season with spices.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">5</div><span>Heat oil in a pan, cook chicken 6–8 min until golden.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">6</div><span>Add veggies to the pan, sauté 3–4 min.</span></li>
+            <li class="step-item" onclick="toggleStep(this,'pre')"><div class="step-num">7</div><span>Serve rice in a bowl, top with chicken & veggies. 🎉</span></li>
           </ul>
         </div>
       </div>
@@ -453,81 +238,51 @@
           <div class="progress-fill" id="prog-fill-pre" style="width:0%"></div>
         </div>
       </div>
+
+      <!-- Veggie picker -->
+      <div class="veggie-section">
+        <div class="col-title">🥦 Choose your vegetables</div>
+        <div class="veggie-grid" id="veggie-grid">
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Broccoli')">🥦 Broccoli</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Zucchini')">🥒 Zucchini</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Corn')">🌽 Corn</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Spinach')">🥬 Spinach</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Cherry tomatoes')">🍅 Cherry tomatoes</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Mushrooms')">🍄 Mushrooms</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Onion')">🧅 Onion</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Carrots')">🥕 Carrots</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Green beans')">🫘 Green beans</div>
+          <div class="veggie-chip" onclick="toggleVeggie(this,'Sweet potato')">🍠 Sweet potato</div>
+        </div>
+        <div class="veggie-selected-label" id="veggie-label">No extra veggies selected yet.</div>
+        <div class="veggie-amount-row">
+          <div class="veggie-amount-label">Amount</div>
+          <div>
+            <span class="veggie-amount-val" id="veggie-amt-val">100</span>
+            <span class="veggie-amount-unit">g</span>
+          </div>
+          <input class="veggie-slider" type="range" min="50" max="300" step="10" value="100" oninput="updateVeggieAmt()" id="veggie-amt-slider">
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ── BEFORE THE GAME ── -->
-  <div id="panel-game" class="recipe-panel">
-    <div class="recipe-card game">
-      <div class="recipe-header">
-        <div class="recipe-emoji">🍝</div>
-        <div class="recipe-title-group">
-          <div class="recipe-tag">Meal Before the Game</div>
-          <div class="recipe-title">Pasta with Chicken & Tomato Sauce</div>
-          <div class="recipe-sub">Carb-loading · Lean protein · Quick prep</div>
-        </div>
-      </div>
-
-      <div class="servings-row">
-        <div class="servings-label">Servings</div>
-        <div class="servings-ctrl">
-          <button class="srv-btn" onclick="changeServ('game',-1)">−</button>
-          <div class="srv-count" id="srv-game">1</div>
-          <button class="srv-btn" onclick="changeServ('game',1)">+</button>
-        </div>
-      </div>
-
-      <div class="recipe-body">
-        <div class="ingredients-col">
-          <div class="col-title">Ingredients</div>
-          <ul class="ingredient-list" id="ing-game">
-            <li><span class="ing-amount" data-base="110" data-unit="g">110 g</span><span class="ing-name">Pasta</span></li>
-            <li><span class="ing-amount" data-base="150" data-unit="g">150 g</span><span class="ing-name">Chicken breast</span></li>
-            <li><span class="ing-amount" data-base="150" data-unit="ml">150 ml</span><span class="ing-name">Tomato sauce</span></li>
-            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt</span></li>
-            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Parmesan</span><span class="ing-optional">optional</span></li>
-          </ul>
-        </div>
-        <div class="steps-col">
-          <div class="col-title">Steps — tap to check off</div>
-          <ul class="step-list" id="steps-game">
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">1</div><span>Boil salted water.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">2</div><span>Cook pasta 8–10 minutes.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">3</div><span>Cut chicken into pieces.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">4</div><span>Cook chicken in pan 6–8 minutes.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">5</div><span>Add tomato sauce and heat 3–5 minutes.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">6</div><span>Mix sauce with pasta.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'game')"><div class="step-num">7</div><span>Serve — optional: add parmesan. 🏆</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span id="prog-label-game">0 of 7 steps done</span>
-          <span id="prog-pct-game">0%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="prog-fill-game" style="width:0%"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── RECOVERY ── -->
+  <!-- ── RECOVERY SMOOTHIE ── -->
   <div id="panel-recovery" class="recipe-panel">
     <div class="recipe-card recovery">
+
       <div class="recipe-header">
-        <div class="recipe-emoji">🐟</div>
+        <div class="recipe-emoji">🥤</div>
         <div class="recipe-title-group">
-          <div class="recipe-tag">Recovery Meal After the Match</div>
-          <div class="recipe-title">Salmon with Rice & Broccoli</div>
-          <div class="recipe-sub">Omega-3 · Anti-inflammatory · Muscle repair</div>
+          <div class="recipe-tag">Recovery Meal After Sport</div>
+          <div class="recipe-title">Recovery Fruit Smoothie</div>
+          <div class="recipe-sub">Fast energy · Vitamins · Muscle repair</div>
         </div>
       </div>
 
       <div class="servings-row">
-        <div class="servings-label">Servings</div>
+        <div class="servings-label">Glasses</div>
         <div class="servings-ctrl">
           <button class="srv-btn" onclick="changeServ('recovery',-1)">−</button>
           <div class="srv-count" id="srv-recovery">1</div>
@@ -535,43 +290,88 @@
         </div>
       </div>
 
-      <div class="recipe-body">
-        <div class="ingredients-col">
-          <div class="col-title">Ingredients</div>
-          <ul class="ingredient-list" id="ing-recovery">
-            <li><span class="ing-amount" data-base="150" data-unit="g">150 g</span><span class="ing-name">Salmon</span></li>
-            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Rice</span></li>
-            <li><span class="ing-amount" data-base="100" data-unit="g">100 g</span><span class="ing-name">Broccoli</span></li>
-            <li><span class="ing-amount" data-base="0.5" data-unit="pc">½</span><span class="ing-name">Lemon</span></li>
-            <li><span class="ing-amount" data-base="1" data-unit="">—</span><span class="ing-name">Salt & pepper</span></li>
-          </ul>
+      <!-- Smoothie builder -->
+      <div class="smoothie-section">
+        <div class="col-title">🍓 Pick your fruits</div>
+        <div class="smoothie-grid" id="fruit-grid">
+          <div class="fruit-chip selected" onclick="toggleFruit(this,'Banana')">🍌 Banana</div>
+          <div class="fruit-chip selected" onclick="toggleFruit(this,'Strawberries')">🍓 Strawberries</div>
+          <div class="fruit-chip" onclick="toggleFruit(this,'Blueberries')">🫐 Blueberries</div>
+          <div class="fruit-chip" onclick="toggleFruit(this,'Mango')">🥭 Mango</div>
+          <div class="fruit-chip" onclick="toggleFruit(this,'Pineapple')">🍍 Pineapple</div>
+          <div class="fruit-chip" onclick="toggleFruit(this,'Raspberries')">🍇 Raspberries</div>
+          <div class="fruit-chip" onclick="toggleFruit(this,'Peach')">🍑 Peach</div>
+          <div class="fruit-chip" onclick="toggleFruit(this,'Kiwi')">🥝 Kiwi</div>
         </div>
-        <div class="steps-col">
-          <div class="col-title">Steps — tap to check off</div>
-          <ul class="step-list" id="steps-recovery">
-            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">1</div><span>Cook rice 10–12 minutes.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">2</div><span>Steam broccoli 5–6 minutes.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">3</div><span>Cook salmon 4–5 minutes per side.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">4</div><span>Season everything.</span></li>
-            <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">5</div><span>Serve with fresh lemon juice. 💪</span></li>
-          </ul>
+
+        <!-- Amount sliders -->
+        <div class="smoothie-inputs">
+          <div class="smoothie-input-group">
+            <div class="smoothie-input-label">Fruit amount</div>
+            <div><span class="smoothie-val" id="fruit-val">200</span> <span class="smoothie-unit">g</span></div>
+            <input class="smoothie-slider" type="range" min="100" max="400" step="10" value="200" oninput="updateSmoothie()" id="fruit-slider">
+          </div>
+          <div class="smoothie-input-group">
+            <div class="smoothie-input-label" id="liquid-label">Milk / Water amount</div>
+            <div><span class="smoothie-val" id="liquid-val">200</span> <span class="smoothie-unit">ml</span></div>
+            <input class="smoothie-slider" type="range" min="50" max="400" step="10" value="200" oninput="updateSmoothie()" id="liquid-slider">
+          </div>
         </div>
+
+        <!-- Liquid toggle -->
+        <div style="margin-bottom:14px">
+          <div class="col-title" style="margin-bottom:10px">Liquid type</div>
+          <div class="smoothie-liquid-toggle">
+            <button class="liq-btn active" onclick="setLiquid('milk',this)">🥛 Milk</button>
+            <button class="liq-btn" onclick="setLiquid('oat',this)">🌾 Oat milk</button>
+            <button class="liq-btn" onclick="setLiquid('water',this)">💧 Water</button>
+          </div>
+        </div>
+
+        <!-- Optional add-ins -->
+        <div class="col-title" style="margin-bottom:10px">Optional add-ins</div>
+        <div class="smoothie-grid" id="addon-grid" style="margin-bottom:18px">
+          <div class="fruit-chip" onclick="toggleAddon(this,'Honey')">🍯 Honey</div>
+          <div class="fruit-chip" onclick="toggleAddon(this,'Protein powder')">💪 Protein powder</div>
+          <div class="fruit-chip" onclick="toggleAddon(this,'Oats')">🌾 Oats</div>
+          <div class="fruit-chip" onclick="toggleAddon(this,'Chia seeds')">🌱 Chia seeds</div>
+          <div class="fruit-chip" onclick="toggleAddon(this,'Peanut butter')">🥜 Peanut butter</div>
+        </div>
+
+        <!-- Summary -->
+        <div class="col-title" style="margin-bottom:10px">Your smoothie recipe</div>
+        <div class="smoothie-summary" id="smoothie-summary">Loading…</div>
+      </div>
+
+      <!-- Steps -->
+      <div style="padding:0 36px 26px">
+        <div class="col-title">Steps — tap to check off</div>
+        <ul class="step-list" id="steps-recovery">
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">1</div><span>Wash and peel your chosen fruits.</span></li>
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">2</div><span>Cut bigger fruits (banana, mango, peach) into chunks.</span></li>
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">3</div><span>Add all fruits into the blender.</span></li>
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">4</div><span>Pour in your chosen liquid.</span></li>
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">5</div><span>Add any optional extras (honey, protein powder…).</span></li>
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">6</div><span>Blend for 30–60 seconds until smooth.</span></li>
+          <li class="step-item" onclick="toggleStep(this,'recovery')"><div class="step-num">7</div><span>Pour into a glass and enjoy! 💪</span></li>
+        </ul>
       </div>
 
       <div class="progress-bar-wrap">
         <div class="progress-label">
-          <span id="prog-label-recovery">0 of 5 steps done</span>
+          <span id="prog-label-recovery">0 of 7 steps done</span>
           <span id="prog-pct-recovery">0%</span>
         </div>
         <div class="progress-track">
           <div class="progress-fill" id="prog-fill-recovery" style="width:0%"></div>
         </div>
       </div>
+
     </div>
   </div>
 
   <!-- Project Info -->
-  <div class="project-strip" style="padding:0; margin-top:0;">
+  <div style="margin-top:0">
     <div class="project-card">
       <div class="project-icon">🎬</div>
       <div class="project-text">
@@ -589,87 +389,178 @@
 
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-  // Tab switching
-  function switchTab(id) {
-    document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('panel-' + id).classList.add('active');
-    event.target.classList.add('active');
+// ── Tab switching ──────────────────────────────────────────────
+function switchTab(id, el) {
+  document.querySelectorAll('.recipe-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── Servings ───────────────────────────────────────────────────
+const servings = { pre:1, recovery:1 };
+function changeServ(id, delta) {
+  servings[id] = Math.max(1, Math.min(10, servings[id] + delta));
+  document.getElementById('srv-' + id).textContent = servings[id];
+  updateIngredients(id);
+  if(id==='recovery') updateSmoothie();
+  if(id==='pre') updateVeggieAmt();
+}
+
+function fmt(base, unit, mult) {
+  const val = base * mult;
+  if (unit === 'pc') return Number.isInteger(val) ? val : val.toFixed(1);
+  if (unit === '') return '—';
+  if (unit === 'tbsp') return (val===1?'1':val) + ' tbsp';
+  return Math.round(val) + ' ' + unit;
+}
+function updateIngredients(id) {
+  const mult = servings[id];
+  document.querySelectorAll('#ing-' + id + ' .ing-amount').forEach(el => {
+    el.textContent = fmt(parseFloat(el.dataset.base), el.dataset.unit, mult);
+  });
+}
+
+// ── Steps ──────────────────────────────────────────────────────
+const stepCounts = { pre:7, recovery:7 };
+const doneCounts = { pre:0, recovery:0 };
+function toggleStep(el, id) {
+  const was = el.classList.contains('done');
+  el.classList.toggle('done');
+  doneCounts[id] += was ? -1 : 1;
+  updateProgress(id);
+}
+function updateProgress(id) {
+  const done = doneCounts[id], total = stepCounts[id];
+  const pct = Math.round(done/total*100);
+  document.getElementById('prog-fill-'+id).style.width = pct+'%';
+  document.getElementById('prog-label-'+id).textContent = done+' of '+total+' steps done';
+  document.getElementById('prog-pct-'+id).textContent = pct+'%';
+  if(done===total) showToast(id==='pre' ? "Fuelled and ready! 🔥" : "Perfect recovery! 💪");
+}
+
+// ── Veggie picker ──────────────────────────────────────────────
+const selectedVeggies = new Set();
+function toggleVeggie(el, name) {
+  el.classList.toggle('selected');
+  selectedVeggies.has(name) ? selectedVeggies.delete(name) : selectedVeggies.add(name);
+  const lbl = document.getElementById('veggie-label');
+  const ingLine = document.getElementById('ing-veggie-line');
+  if(selectedVeggies.size===0) {
+    lbl.innerHTML = 'No vegetables selected yet — pick at least one!';
+    lbl.style.color = 'var(--sub)';
+    ingLine.innerHTML = 'Vegetables <span style="font-size:12px;color:var(--sub);font-weight:400;">(choose below)</span>';
+  } else {
+    const list = [...selectedVeggies].join(', ');
+    lbl.innerHTML = '✓ Selected: <span style="color:var(--text);font-weight:500;">' + list + '</span>';
+    lbl.style.color = 'var(--pre)';
+    const amt = document.getElementById('veggie-amt-slider') ? document.getElementById('veggie-amt-slider').value : 100;
+    ingLine.innerHTML = list + '<span style="font-size:12px;color:var(--sub);font-weight:400;"> — ' + (amt * servings.pre) + ' g</span>';
+  }
+}
+
+// ── Smoothie builder ───────────────────────────────────────────
+const selectedFruits = new Set(['Banana','Strawberries']);
+const selectedAddons = new Set();
+let liquidType = 'milk';
+
+function toggleFruit(el, name) {
+  el.classList.toggle('selected');
+  selectedFruits.has(name) ? selectedFruits.delete(name) : selectedFruits.add(name);
+  updateSmoothie();
+}
+function toggleAddon(el, name) {
+  el.classList.toggle('selected');
+  selectedAddons.has(name) ? selectedAddons.delete(name) : selectedAddons.add(name);
+  updateSmoothie();
+}
+function setLiquid(type, el) {
+  liquidType = type;
+  document.querySelectorAll('.liq-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  updateSmoothie();
+}
+
+function updateSmoothie() {
+  const glasses = servings.recovery;
+  const fruitG  = parseInt(document.getElementById('fruit-slider').value) * glasses;
+  const liquidMl= parseInt(document.getElementById('liquid-slider').value) * glasses;
+  document.getElementById('fruit-val').textContent  = fruitG;
+  document.getElementById('liquid-val').textContent = liquidMl;
+
+  const liquidNames = { milk:'milk 🥛', oat:'oat milk 🌾', water:'water 💧' };
+  const fruits = selectedFruits.size > 0 ? [...selectedFruits].join(', ') : 'no fruits selected yet';
+  const addonList = [...selectedAddons];
+  const glassLabel = glasses === 1 ? '1 glass' : glasses + ' glasses';
+
+  // ── Ratio & consistency feedback ──────────────────────────────
+  const ratio = fruitG / liquidMl; // >1 = thick, <0.6 = thin
+  let thickness, thickTip;
+  if (ratio > 1.6) {
+    thickness = '🥄 Very thick — almost like a smoothie bowl';
+    thickTip  = 'Add more liquid or eat with a spoon!';
+  } else if (ratio > 1.0) {
+    thickness = '🥤 Thick & creamy — perfect for a filling recovery drink';
+    thickTip  = 'Great consistency for after sport.';
+  } else if (ratio > 0.6) {
+    thickness = '🫗 Medium — smooth and easy to drink';
+    thickTip  = 'Good balance of fruit and liquid.';
+  } else {
+    thickness = '💧 Quite thin — more like a juice';
+    thickTip  = 'Add more fruit or reduce the liquid for more body.';
   }
 
-  // Servings state
-  const servings = { pre: 1, game: 1, recovery: 1 };
+  // ── Liquid-specific note ───────────────────────────────────────
+  const liquidNotes = {
+    milk:  'Milk adds protein & creaminess — great for muscle recovery.',
+    oat:   'Oat milk gives a slightly sweet, nutty flavour and extra carbs.',
+    water: 'Water keeps it light and refreshing — lower in calories.'
+  };
 
-  function changeServ(id, delta) {
-    servings[id] = Math.max(1, Math.min(10, servings[id] + delta));
-    document.getElementById('srv-' + id).textContent = servings[id];
-    updateIngredients(id);
+  // ── Addon note ─────────────────────────────────────────────────
+  let addonNote = '';
+  if (addonList.includes('Protein powder')) addonNote += ' Protein powder boosts recovery.';
+  if (addonList.includes('Oats'))           addonNote += ' Oats make it more filling.';
+  if (addonList.includes('Chia seeds'))     addonNote += ' Chia seeds add omega-3 & fibre.';
+  if (addonList.includes('Honey'))          addonNote += ' Honey gives a quick energy boost.';
+  if (addonList.includes('Peanut butter'))  addonNote += ' Peanut butter adds healthy fats & protein.';
+
+  const addonsDisplay = addonList.length > 0 ? '<br>➕ <b>Extras:</b> ' + addonList.join(', ') + '.' + addonNote : '';
+
+  document.getElementById('smoothie-summary').innerHTML =
+    `<b>${glassLabel}:</b> <b>${fruitG} g</b> ${fruits} + <b>${liquidMl} ml</b> ${liquidNames[liquidType]}`+
+    addonsDisplay +
+    `<br><br>${thickness}<br><span style="color:var(--sub);font-size:12px;">${thickTip} ${liquidNotes[liquidType]}</span>`;
+}
+
+// ── Veggie amount ──────────────────────────────────────────────
+function updateVeggieAmt() {
+  const base = parseInt(document.getElementById('veggie-amt-slider').value);
+  const total = base * servings.pre;
+  document.getElementById('veggie-amt-val').textContent = total;
+  // also re-trigger veggie label to refresh the amount shown in the ingredient line
+  const ingLine = document.getElementById('ing-veggie-line');
+  if(selectedVeggies.size > 0) {
+    ingLine.innerHTML = [...selectedVeggies].join(', ');
+    document.getElementById('ing-veggie-amt').textContent = total + ' g';
   }
+}
 
-  function fmt(base, unit, mult) {
-    const val = base * mult;
-    if (unit === 'pc') {
-      if (val === 0.5) return '½';
-      if (val === 1.5) return '1½';
-      return Number.isInteger(val) ? val : val.toFixed(1);
-    }
-    if (unit === '') return '—';
-    const rounded = Math.round(val);
-    return rounded + ' ' + unit;
-  }
+// ── Toast ──────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
 
-  function updateIngredients(id) {
-    const mult = servings[id];
-    document.querySelectorAll('#ing-' + id + ' .ing-amount').forEach(el => {
-      const base = parseFloat(el.dataset.base);
-      const unit = el.dataset.unit;
-      el.textContent = fmt(base, unit, mult);
-    });
-  }
-
-  // Step toggling + progress
-  const stepCounts = { pre: 7, game: 7, recovery: 5 };
-  const doneCounts = { pre: 0, game: 0, recovery: 0 };
-
-  function toggleStep(el, id) {
-    const wasDone = el.classList.contains('done');
-    el.classList.toggle('done');
-    doneCounts[id] += wasDone ? -1 : 1;
-    updateProgress(id);
-  }
-
-  function updateProgress(id) {
-    const done = doneCounts[id];
-    const total = stepCounts[id];
-    const pct = Math.round((done / total) * 100);
-
-    document.getElementById('prog-fill-' + id).style.width = pct + '%';
-    document.getElementById('prog-label-' + id).textContent = done + ' of ' + total + ' steps done';
-    document.getElementById('prog-pct-' + id).textContent = pct + '%';
-
-    if (done === total) {
-      const msgs = {
-        pre: "You're fuelled and ready! 🔥",
-        game: "Time to dominate the pitch! ⚽",
-        recovery: "Recovery unlocked. Sleep well! 💤"
-      };
-      showToast(msgs[id]);
-    }
-  }
-
-  // Toast
-  let toastTimer;
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
-  }
+// Init
+updateSmoothie();
 </script>
 </body>
 </html>
