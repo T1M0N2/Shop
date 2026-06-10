@@ -127,9 +127,47 @@
   footer{padding:36px 0;border-top:1px solid var(--line-soft);text-align:center}
   footer p{color:var(--faint);font-size:.82rem}
 
-  @media(max-width:480px){
-    .slots{grid-template-columns:repeat(3,1fr)}
-    form{gap:14px}
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+
+    /* Hero etwas kompakter */
+    header{padding:84px 0 56px}
+    header p{margin-bottom:32px}
+    .btn{padding:15px 34px}
+
+    /* Angebotskarte */
+    .offer{padding:28px 0}
+    .offer-card{padding:44px 24px;border-radius:22px}
+
+    /* Buchung */
+    .booking{padding:44px 0 80px}
+    .booking .sub{margin-bottom:32px}
+
+    /* Formular einspaltig: Vor-/Nachname & Datum/Zeit untereinander,
+       so haben Felder und vor allem die Picker volle Breite */
+    form{grid-template-columns:1fr;gap:16px}
+    .field.full{grid-column:auto}
+
+    /* Eingaben + Picker fingerfreundlich (kein iOS-Zoom dank 16px) */
+    input[type=text],input[type=tel],.picker-trigger{font-size:16px;padding:16px}
+
+    /* Popover wird auf dem Handy bewusst breiter/luftiger */
+    .pop{padding:14px;border-radius:16px}
+
+    /* Kalendertage als gut tappbare Flächen */
+    .cal-day{font-size:.95rem;border-radius:11px}
+    .cal-nav button{width:36px;height:36px}
+
+    /* Zeit-Slots: 3 Spalten bleiben, aber grösser tappbar */
+    .slots{grid-template-columns:repeat(3,1fr);gap:8px}
+    .slot{padding:13px 0;font-size:.95rem}
+
+    .submit{padding:18px;font-size:1.05rem}
+  }
+
+  @media(max-width:360px){
+    .slots{grid-template-columns:repeat(2,1fr)}
+    header h1{font-size:2.5rem}
   }
 </style>
 </head>
