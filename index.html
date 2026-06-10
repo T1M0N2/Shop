@@ -3,933 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABU LAP Quiz 2026 - TBZ</title>
+<title>Marlon Specht — Haarschnitt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f8f9fa;
-    --bg-card: #ffffff;
-    --bg-secondary: #f1f3f5;
-    --text: #1a1a1a;
-    --text-secondary: #6c757d;
-    --border: #dee2e6;
-    --accent: #1F4E79;
-    --accent-light: #D5E8F0;
-    --success-bg: #d4edda;
-    --success-text: #155724;
-    --success-border: #c3e6cb;
-    --danger-bg: #f8d7da;
-    --danger-text: #721c24;
-    --danger-border: #f5c6cb;
-    --warning-bg: #fff3cd;
-    --warning-text: #856404;
+  :root{
+    --bg:#0a0a0b;
+    --surface:#141416;
+    --surface-2:#1c1c1f;
+    --surface-3:#252529;
+    --text:#f5f5f7;
+    --muted:#8a8a90;
+    --faint:#5a5a60;
+    --line:#2a2a2e;
+    --line-soft:#222226;
+    --accent:#ffffff;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1a1a;
-      --bg-card: #2a2a2a;
-      --bg-secondary: #333;
-      --text: #f0f0f0;
-      --text-secondary: #aaa;
-      --border: #444;
-      --accent: #4d9de0;
-      --accent-light: #1a3a52;
-      --success-bg: #1e3a2a;
-      --success-text: #6fd28f;
-      --success-border: #2d5a3f;
-      --danger-bg: #3a1e1e;
-      --danger-text: #f08080;
-      --danger-border: #5a2d2d;
-      --warning-bg: #3d3520;
-      --warning-text: #ffd966;
-    }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(900px 500px at 50% -10%, rgba(255,255,255,.05), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;
+    min-height:100vh;
   }
-  * { box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    min-height: 100vh;
+  .wrap{max-width:640px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,11,.65);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--line-soft)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:54px;max-width:980px}
+  .brand{font-weight:600;font-size:.95rem;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--text);box-shadow:0 0 12px rgba(255,255,255,.6)}
+  nav a.book{font-size:.85rem;color:var(--muted);text-decoration:none;transition:color .2s}
+  nav a.book:hover{color:var(--text)}
+
+  /* HERO */
+  header{padding:120px 0 80px;text-align:center}
+  header h1{font-size:clamp(2.8rem,9vw,4.4rem);font-weight:600;line-height:1.04;letter-spacing:-.035em;margin-bottom:18px;
+    background:linear-gradient(180deg,#fff 0%,#bcbcc4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  header p{font-size:clamp(1.05rem,3vw,1.3rem);color:var(--muted);font-weight:400;max-width:30ch;margin:0 auto 40px}
+  .btn{display:inline-block;background:var(--text);color:#000;padding:14px 32px;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;transition:opacity .2s,transform .12s,box-shadow .2s;box-shadow:0 4px 24px rgba(255,255,255,.12)}
+  .btn:hover{opacity:.9;box-shadow:0 6px 30px rgba(255,255,255,.2)}
+  .btn:active{transform:scale(.97)}
+
+  /* OFFER */
+  .offer{padding:40px 0}
+  .offer-card{position:relative;background:linear-gradient(180deg,var(--surface) 0%,#101012 100%);border:1px solid var(--line);border-radius:26px;padding:56px 32px;text-align:center;overflow:hidden}
+  .offer-card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 50% 0%,rgba(255,255,255,.06),transparent 70%);pointer-events:none}
+  .offer-card .label{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+  .offer-card .price{font-size:clamp(3.6rem,13vw,5.8rem);font-weight:600;letter-spacing:-.045em;line-height:1}
+  .offer-card .price small{font-size:1.4rem;font-weight:400;color:var(--muted);vertical-align:super;margin-left:6px;letter-spacing:0}
+  .offer-card .desc{color:var(--muted);font-size:1.05rem;margin-top:16px}
+
+  /* BOOKING */
+  .booking{padding:56px 0 100px}
+  .booking h2{font-size:clamp(1.8rem,5vw,2.3rem);font-weight:600;text-align:center;letter-spacing:-.03em;margin-bottom:10px}
+  .booking .sub{text-align:center;color:var(--muted);margin-bottom:40px;font-size:1rem}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;gap:9px}
+  .field.full{grid-column:1/-1}
+  label{font-size:.82rem;font-weight:500;color:var(--muted);padding-left:2px}
+  input[type=text],input[type=tel]{
+    background:var(--surface-2);border:1px solid var(--line);color:var(--text);
+    padding:15px 16px;border-radius:14px;font-family:inherit;font-size:1rem;transition:border-color .2s,background .2s;
   }
-  .container {
-    max-width: 700px;
-    margin: 0 auto;
+  input[type=text]:focus,input[type=tel]:focus{outline:none;border-color:#4a4a52;background:var(--surface-3)}
+  input::placeholder{color:var(--faint)}
+
+  /* CUSTOM TRIGGER (date/time) */
+  .picker{position:relative}
+  .picker-trigger{
+    width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);color:var(--text);
+    padding:15px 16px;border-radius:14px;font-family:inherit;font-size:1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:10px;transition:border-color .2s,background .2s;
   }
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 20px;
+  .picker-trigger:hover{border-color:#3a3a42}
+  .picker-trigger.active{border-color:#4a4a52;background:var(--surface-3)}
+  .picker-trigger .val{color:var(--faint);transition:color .2s}
+  .picker-trigger .val.set{color:var(--text)}
+  .picker-trigger .chev{flex-shrink:0;transition:transform .25s ease;opacity:.6}
+  .picker-trigger.active .chev{transform:rotate(180deg)}
+
+  /* POPOVER */
+  .pop{
+    position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:30;
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:16px;box-shadow:0 18px 50px rgba(0,0,0,.55);
+    opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;transition:opacity .2s,transform .2s;transform-origin:top;
   }
-  h1 {
-    margin: 0 0 8px;
-    font-size: 28px;
-    color: var(--accent);
+  .pop.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+
+  /* CALENDAR */
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .cal-title{font-weight:600;font-size:.95rem}
+  .cal-nav{display:flex;gap:6px}
+  .cal-nav button{width:32px;height:32px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s}
+  .cal-nav button:hover{background:var(--surface-3);border-color:#3a3a42}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .cal-dow{text-align:center;font-size:.68rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;padding:4px 0;font-weight:600}
+  .cal-day{aspect-ratio:1;border:none;background:transparent;color:var(--text);border-radius:10px;font-family:inherit;font-size:.9rem;cursor:pointer;transition:background .15s;display:grid;place-items:center}
+  .cal-day:hover:not(:disabled){background:var(--surface-3)}
+  .cal-day:disabled{color:#3a3a40;cursor:default}
+  .cal-day.sel{background:var(--text);color:#000;font-weight:600}
+  .cal-day.empty{cursor:default}
+
+  /* TIME SLOTS */
+  .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .slot{padding:11px 0;text-align:center;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:11px;font-family:inherit;font-size:.92rem;cursor:pointer;transition:background .15s,border-color .15s}
+  .slot:hover{background:var(--surface-3);border-color:#3a3a42}
+  .slot.sel{background:var(--text);color:#000;border-color:var(--text);font-weight:600}
+
+  .submit{grid-column:1/-1;background:var(--text);color:#000;border:none;margin-top:8px;padding:17px;border-radius:999px;font-family:inherit;font-weight:600;font-size:1.02rem;cursor:pointer;transition:opacity .2s,transform .12s;box-shadow:0 4px 24px rgba(255,255,255,.1)}
+  .submit:hover{opacity:.9}
+  .submit:active{transform:scale(.99)}
+  .submit:disabled{opacity:.5;cursor:wait}
+  .ok-msg{grid-column:1/-1;background:var(--surface-2);border:1px solid var(--line);color:var(--text);padding:16px;border-radius:14px;font-size:.95rem;text-align:center;display:none}
+  .ok-msg.show{display:block}
+
+  footer{padding:36px 0;border-top:1px solid var(--line-soft);text-align:center}
+  footer p{color:var(--faint);font-size:.82rem}
+
+  @media(max-width:480px){
+    .slots{grid-template-columns:repeat(3,1fr)}
+    form{gap:14px}
   }
-  h2 {
-    margin: 0 0 16px;
-    font-size: 20px;
-    line-height: 1.4;
-  }
-  .subtitle {
-    color: var(--text-secondary);
-    margin: 0 0 24px;
-    font-size: 15px;
-  }
-  .topic-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
-    margin: 24px 0;
-  }
-  .topic-tile {
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    padding: 12px;
-    border: 1px solid var(--border);
-  }
-  .topic-tile-label { font-size: 12px; color: var(--text-secondary); }
-  .topic-tile-value { font-size: 16px; font-weight: 600; margin-top: 4px; }
-  button {
-    background: var(--bg-card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    font-family: inherit;
-    transition: all 0.15s;
-  }
-  button:hover:not(:disabled) {
-    background: var(--bg-secondary);
-    border-color: var(--accent);
-  }
-  button.primary {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-  }
-  button.primary:hover { opacity: 0.9; }
-  button:disabled { cursor: default; opacity: 0.85; }
-  select {
-    background: var(--bg-card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-family: inherit;
-    font-size: 14px;
-  }
-  .btn-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  .progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-  }
-  .progress-bar-bg {
-    height: 8px;
-    background: var(--bg-secondary);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 24px;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: var(--accent);
-    transition: width 0.3s;
-  }
-  .option-btn {
-    text-align: left;
-    padding: 14px 16px;
-    line-height: 1.4;
-    width: 100%;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .option-correct {
-    background: var(--success-bg) !important;
-    border-color: var(--success-border) !important;
-    color: var(--success-text) !important;
-  }
-  .option-wrong {
-    background: var(--danger-bg) !important;
-    border-color: var(--danger-border) !important;
-    color: var(--danger-text) !important;
-  }
-  .feedback {
-    margin-top: 16px;
-    padding: 14px 18px;
-    border-radius: 8px;
-    line-height: 1.6;
-    font-size: 14px;
-  }
-  .feedback-correct { background: var(--success-bg); color: var(--success-text); }
-  .feedback-wrong { background: var(--danger-bg); color: var(--danger-text); }
-  .bottom-row {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-  }
-  .final-score-box {
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .final-score-num {
-    font-size: 48px;
-    font-weight: 600;
-    color: var(--accent);
-  }
-  .breakdown {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-  .breakdown-card {
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    padding: 12px;
-  }
-  .review-card {
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
-    border-left: 4px solid var(--danger-text);
-  }
-  .review-card-topic { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
-  .review-card-q { font-weight: 600; margin-bottom: 10px; }
-  .review-card-yours { color: var(--danger-text); font-size: 14px; margin-bottom: 4px; }
-  .review-card-correct { color: var(--success-text); font-size: 14px; margin-bottom: 8px; font-weight: 500; }
-  .review-card-explanation { color: var(--text-secondary); font-size: 14px; }
-  .footer-info {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 12px;
-    margin-top: 30px;
-    padding: 16px;
-  }
-  .center { text-align: center; }
 </style>
 </head>
 <body>
-<div class="container">
-
-  <!-- START SCREEN -->
-  <div id="start-screen" class="card">
-    <h1>ABU LAP Quiz 2026</h1>
-    <p class="subtitle">~150 Pruefungsfragen aus allen 5 ABU-Themen mit sofortigem Feedback. Erstellt fuer die Schlusspruefung an der TBZ am 8. Juni 2026.</p>
-
-    <div class="topic-grid">
-      <div class="topic-tile">
-        <div class="topic-tile-label">Kauf &amp; Konsum</div>
-        <div class="topic-tile-value">30 Fragen</div>
-      </div>
-      <div class="topic-tile">
-        <div class="topic-tile-label">Arbeitswelt</div>
-        <div class="topic-tile-value">30 Fragen</div>
-      </div>
-      <div class="topic-tile">
-        <div class="topic-tile-label">Politik</div>
-        <div class="topic-tile-value">30 Fragen</div>
-      </div>
-      <div class="topic-tile">
-        <div class="topic-tile-label">Wohnen</div>
-        <div class="topic-tile-value">30 Fragen</div>
-      </div>
-      <div class="topic-tile">
-        <div class="topic-tile-label">Intl. Org.</div>
-        <div class="topic-tile-value">30 Fragen</div>
-      </div>
-    </div>
-
-    <div style="margin: 16px 0;">
-      <label for="num-questions" style="font-size: 14px; color: var(--text-secondary);">Anzahl Fragen pro Durchgang:</label>
-      <select id="num-questions" style="margin-left: 8px;">
-        <option value="10">10 Fragen</option>
-        <option value="20">20 Fragen</option>
-        <option value="30" selected>30 Fragen</option>
-        <option value="50">50 Fragen</option>
-        <option value="-1">Alle Fragen</option>
-      </select>
-    </div>
-
-    <div class="btn-row">
-      <button class="primary" onclick="startQuiz('all')">Alle 5 Themen mischen</button>
-      <button onclick="startQuiz('kauf')">Nur Kauf</button>
-      <button onclick="startQuiz('arbeit')">Nur Arbeitswelt</button>
-      <button onclick="startQuiz('politik')">Nur Politik</button>
-      <button onclick="startQuiz('wohnen')">Nur Wohnen</button>
-      <button onclick="startQuiz('intl')">Nur Intl. Org.</button>
+<nav>
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span>Marlon Specht</span>
+    <a href="#termin" class="book">Termin</a>
+  </div>
+</nav>
+<header>
+  <div class="wrap">
+    <h1>Haarschnitt.</h1>
+    <p>Sauber, in Ruhe gemacht. Nach Vereinbarung.</p>
+    <a href="#termin" class="btn">Termin buchen</a>
+  </div>
+</header>
+<section class="offer">
+  <div class="wrap">
+    <div class="offer-card">
+      <div class="label">Haarschnitt</div>
+      <div class="price">10<small>CHF</small></div>
+      <p class="desc">Ein Preis. Kein Kleingedrucktes.</p>
     </div>
   </div>
+</section>
+<section class="booking" id="termin">
+  <div class="wrap">
+    <h2>Termin buchen</h2>
+    <p class="sub">Anfrage ausfüllen — Marlon meldet sich zur Bestätigung.</p>
+    <form id="bookingForm" action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST">
+      <div class="field">
+        <label for="vorname">Vorname</label>
+        <input type="text" id="vorname" name="Vorname" placeholder="Max" required>
+      </div>
+      <div class="field">
+        <label for="nachname">Nachname</label>
+        <input type="text" id="nachname" name="Nachname" placeholder="Mustermann" required>
+      </div>
+      <div class="field full">
+        <label for="telefon">Telefon</label>
+        <input type="tel" id="telefon" name="Telefon" placeholder="079 123 45 67" required>
+      </div>
 
-  <!-- QUIZ SCREEN -->
-  <div id="quiz-screen" class="card" style="display: none;">
-    <div class="progress-info">
-      <span id="topic-label"></span>
-      <span><span id="q-current">1</span> / <span id="q-total">30</span> &nbsp;·&nbsp; <span id="score-label">0</span> Punkte</span>
-    </div>
-    <div class="progress-bar-bg">
-      <div id="progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
-    </div>
+      <div class="field">
+        <label>Wunschdatum</label>
+        <div class="picker">
+          <button type="button" class="picker-trigger" id="dateTrigger" aria-haspopup="true" aria-expanded="false">
+            <span class="val" id="dateVal">Datum wählen</span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="pop" id="datePop">
+            <div class="cal-head">
+              <span class="cal-title" id="calTitle"></span>
+              <div class="cal-nav">
+                <button type="button" id="prevMonth" aria-label="Vorheriger Monat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                <button type="button" id="nextMonth" aria-label="Nächster Monat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+              </div>
+            </div>
+            <div class="cal-grid" id="calDow"></div>
+            <div class="cal-grid" id="calDays" style="margin-top:4px"></div>
+          </div>
+        </div>
+      </div>
 
-    <h2 id="question-text"></h2>
-    <div id="options-container"></div>
-    <div id="feedback" class="feedback" style="display: none;"></div>
+      <div class="field">
+        <label>Wunschzeit</label>
+        <div class="picker">
+          <button type="button" class="picker-trigger" id="timeTrigger" aria-haspopup="true" aria-expanded="false">
+            <span class="val" id="timeVal">Zeit wählen</span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="pop" id="timePop">
+            <div class="slots" id="slots"></div>
+          </div>
+        </div>
+      </div>
 
-    <div class="bottom-row">
-      <button onclick="quitQuiz()" style="font-size: 13px;">Abbrechen</button>
-      <button id="next-btn" class="primary" onclick="nextQuestion()" style="display: none;">Naechste Frage →</button>
-    </div>
+      <input type="hidden" name="Wunschdatum" id="dateInput" required>
+      <input type="hidden" name="Wunschzeit" id="timeInput" required>
+      <input type="hidden" name="_subject" value="Neue Terminanfrage - Marlon Specht">
+      <button type="submit" class="submit">Anfrage senden</button>
+      <div class="ok-msg" id="okMsg">Danke. Deine Anfrage ist bei Marlon - er meldet sich zur Bestätigung.</div>
+    </form>
   </div>
-
-  <!-- RESULT SCREEN -->
-  <div id="result-screen" class="card" style="display: none;">
-    <div class="center">
-      <h1>Quiz beendet!</h1>
-      <p id="result-tagline" class="subtitle"></p>
-    </div>
-    <div class="final-score-box">
-      <div class="final-score-num" id="final-score">0 / 30</div>
-      <div style="color: var(--text-secondary); margin-top: 4px;" id="final-percentage">0%</div>
-    </div>
-    <div id="topic-breakdown" class="breakdown"></div>
-    <div class="btn-row" style="justify-content: center;">
-      <button class="primary" onclick="location.reload()">Neu starten</button>
-      <button id="review-btn" onclick="reviewWrong()">Falsche Antworten ansehen</button>
-    </div>
-    <div id="review-section" style="display: none; margin-top: 24px;"></div>
-  </div>
-
-  <div class="footer-info">
-    ABU LAP Quiz 2026 · TBZ Schlusspruefung · 5 Themen, ~150 Fragen<br>
-    Lernhilfe fuer Lernende der Technischen Berufsschule Zuerich
-  </div>
-</div>
+</section>
+<footer>
+  <div class="wrap"><p>Marlon Specht &middot; Haarschnitt nach Vereinbarung</p></div>
+</footer>
 
 <script>
-const ALL_QUESTIONS = [
-  // ═══════════════════════ KAUF UND KONSUM (30) ═══════════════════════
-  { topic: "kauf", q: "Du bestellst muendlich ein Mountainbike beim Velohaendler. Bist du verpflichtet, es zu kaufen?",
-    options: ["Nein, muendliche Bestellungen sind unverbindlich", "Ja, eine muendliche Bestellung gilt als Kaufvertrag", "Nur wenn du eine Anzahlung geleistet hast"],
-    correct: 1, explanation: "Eine muendliche Bestellung gilt rechtlich als Kaufvertrag (OR 3-6). Du bist daran gebunden." },
-  { topic: "kauf", q: "Du siehst in einem Zeitungsinserat ein Sofa fuer CHF 800. Im Geschaeft wird CHF 950 verlangt. Welcher Preis gilt?",
-    options: ["CHF 800 – Inserate sind verbindlich", "CHF 950 – Inserate sind unverbindlich", "Der Mittelwert"],
-    correct: 1, explanation: "Inserate sind UNVERBINDLICH. Der Preis im Geschaeft gilt – also CHF 950." },
-  { topic: "kauf", q: "Du siehst im Schaufenster Jeans fuer CHF 58. Drinnen kosten sie CHF 89. Welcher Preis gilt?",
-    options: ["CHF 58 – Schaufenster-Preise sind bindend", "CHF 89 – Schaufenster ist Werbung", "Der Verkaeufer darf entscheiden"],
-    correct: 0, explanation: "Schaufensterpreise sind BINDEND (ausser bei offensichtlichem Irrtum, z.B. Komma falsch). OR 23-27." },
-  { topic: "kauf", q: "Wie lange hast du Zeit, eine Mangelruge zu machen?",
-    options: ["14 Tage nach Erhalt", "30 Tage nach Erhalt", "Sofort nach Erhalt", "Innerhalb der Garantiezeit"],
-    correct: 2, explanation: "Mangelruge muss SOFORT nach Erhalt erfolgen (OR 201). Verzoegerst du, verfaellt das Recht – auch innerhalb der Garantie." },
-  { topic: "kauf", q: "Welche drei Anspruechen hat der Kaeufer bei einem Mangel?",
-    options: ["Schadenersatz, Reparatur, Geld zurueck", "Ersatzlieferung, Minderung, Wandelung", "Mahnung, Betreibung, Klage"],
-    correct: 1, explanation: "Bei mangelhafter Lieferung: Ersatzlieferung (neue Ware), Minderung (Preisermaessigung) oder Wandelung (Vertragsaufloesung)." },
-  { topic: "kauf", q: "Bei einem Haustuergeschaeft – wie lange hast du Widerrufsrecht?",
-    options: ["7 Tage schriftlich", "14 Tage schriftlich", "Kein Widerrufsrecht", "30 Tage muendlich oder schriftlich"],
-    correct: 0, explanation: "Bei Haustuergeschaeften (Wohnung, Strasse, Arbeitsplatz, Werbeveranstaltung) gilt ein Widerrufsrecht von 7 Tagen schriftlich." },
-  { topic: "kauf", q: "Du schliesst an einer Werbeveranstaltung einen Vertrag fuer CHF 150 ab. Kannst du zuruecktreten?",
-    options: ["Ja, innert 7 Tagen", "Nein, kein Widerrufsrecht", "Nur wenn unverderbliche Ware"],
-    correct: 0, explanation: "Werbeveranstaltungen gelten wie Hausturgschaefte – 7 Tage Widerrufsrecht schriftlich." },
-  { topic: "kauf", q: "Wie hoch ist der maximale Zinssatz bei einem Konsumkredit (KKG)?",
-    options: ["5%", "10%", "12%", "15%"],
-    correct: 1, explanation: "Beim KKG: max. 10% (Bankkredit/Leasing), max. 12% (Ueberziehungskredit). Standard fuer Konsumkredit: 10%." },
-  { topic: "kauf", q: "Innert welcher Frist kannst du einen Konsumkreditvertrag widerrufen?",
-    options: ["7 Tage", "10 Tage", "14 Tage", "30 Tage"],
-    correct: 2, explanation: "KKG-Widerruf: 14 Tage nach Erhalt der Vertragskopie, schriftlich. Auszahlung erfolgt erst danach." },
-  { topic: "kauf", q: "Innerhalb welcher Frist muss ein Konsumkredit zurueckzahlbar sein?",
-    options: ["1 Jahr", "2 Jahre", "3 Jahre", "5 Jahre"],
-    correct: 2, explanation: "KKG: Der Kredit muss innerhalb von 3 Jahren zurueckzahlbar sein – sonst ist der Vertrag ungueltig." },
-  { topic: "kauf", q: "Beim Leasing – wer ist Eigentuemer des Fahrzeugs?",
-    options: ["Der Leasingnehmer", "Der Leasinggeber", "Beide gemeinsam", "Die Bank"],
-    correct: 1, explanation: "Der Leasinggeber bleibt IMMER Eigentuemer – auch nach Ablauf des Vertrags. Leasing ist keine Ratenzahlung!" },
-  { topic: "kauf", q: "Ab wie vielen ausstehenden Monatsraten kann die Leasing-Firma kuendigen?",
-    options: ["1 Monatsrate", "2 Monatsraten", "Mehr als 3 Monatsraten", "6 Monatsraten"],
-    correct: 2, explanation: "Erst ab mehr als 3 ausstehenden Monatsraten darf die Leasing-Firma kuendigen." },
-  { topic: "kauf", q: "Darf ich ein geleastes Auto verkaufen?",
-    options: ["Ja, mir gehoert es nach den Raten", "Ja, mit Erlaubnis der Bank", "Nein – ich bin nicht Eigentuemer, das waere strafbar"],
-    correct: 2, explanation: "Nein! Ich schulde der Leasing-Firma vollen Schadenersatz und mache mich strafbar. Das Auto gehoert dem Leasinggeber." },
-  { topic: "kauf", q: "Warum muss man bei Leasing eine Vollkaskoversicherung abschliessen?",
-    options: ["Vorschrift im Strassenverkehrsgesetz", "Weil das Fahrzeug Eigentum des Leasinggebers ist und geschuetzt werden muss", "Aus reiner Kulanz"],
-    correct: 1, explanation: "Das Fahrzeug gehoert dem Leasinggeber. Eine Vollkaskoversicherung mit Neuwertdeckung schuetzt seinen Wert." },
-  { topic: "kauf", q: "Wie wird der Kilometerzuschlag beim Leasing typischerweise berechnet?",
-    options: ["Pauschal CHF 100 pro 1000 km", "Restwert geteilt durch 2000 = Rappen pro Mehr-km (Eurotax)", "10% des Restwerts"],
-    correct: 1, explanation: "Eurotax-Regel: Restwert / 2000 = Rappen pro Mehr-Kilometer. Bsp. Restwert 10'000 / 2000 = 5 Rappen/km." },
-  { topic: "kauf", q: "Eine Internet-Bestellung – hast du ein gesetzliches Rueckgaberecht?",
-    options: ["Ja, 7 Tage", "Ja, 14 Tage", "Nein, kein gesetzliches Ruecktrittsrecht", "Ja, 30 Tage"],
-    correct: 2, explanation: "Bei Internet-Bestellungen gibt es KEIN gesetzliches Ruecktrittsrecht (anders als bei Haustuergeschaeften). Nur AGB des Haendlers koennen Kulanz gewaehren." },
-  { topic: "kauf", q: "Wer haftet, wenn die im Internet bestellte Ware auf dem Versandweg verloren geht?",
-    options: ["Immer der Verkaeufer", "Immer der Kaeufer", "Der Verantwortliche – Absender (wenn unsorgfaeltig) oder Transporteur"],
-    correct: 2, explanation: "Es haftet der Verantwortliche: der Absender, wenn er unsorgfaeltig gearbeitet hat, oder der Transporteur." },
-  { topic: "kauf", q: "Welches Gesetz ist die Grundlage der Betreibung?",
-    options: ["OR (Obligationenrecht)", "ZGB (Zivilgesetzbuch)", "SchKG (Schuldbetreibungs- und Konkursgesetz)", "ArG (Arbeitsgesetz)"],
-    correct: 2, explanation: "SchKG = Schuldbetreibungs- und Konkursgesetz. Regelt alle Betreibungs- und Konkursverfahren in der Schweiz." },
-  { topic: "kauf", q: "Welche 3 Hauptarten der Betreibung gibt es?",
-    options: ["Pfaendung, Pfandverwertung, Konkurs", "Mahnung, Klage, Pfaendung", "Pfaendung, Aktienverwertung, Konkurs"],
-    correct: 0, explanation: "Die drei Hauptarten: Betreibung auf Pfaendung (Privatpersonen), Pfandverwertung (bei Pfand) und Konkurs (HR-eingetragene)." },
-  { topic: "kauf", q: "Wie viel Tage Zeit hat der Schuldner fuer einen Rechtsvorschlag?",
-    options: ["3 Tage", "10 Tage", "20 Tage", "30 Tage"],
-    correct: 1, explanation: "10 Tage nach Erhalt des Zahlungsbefehls. Der Rechtsvorschlag stoppt die Betreibung vorlaeufig." },
-  { topic: "kauf", q: "Wie hoch ist der Verzugszins gemaess OR?",
-    options: ["3%", "5%", "8%", "10%"],
-    correct: 1, explanation: "5% Verzugszins kann ohne weitere Vereinbarung verlangt werden, wenn der Schuldner in Verzug geraten ist." },
-  { topic: "kauf", q: "Wie lange gilt die gesetzliche Garantie ohne andere Abmachung?",
-    options: ["1 Jahr", "2 Jahre", "5 Jahre", "Es gibt keine gesetzliche Garantie"],
-    correct: 1, explanation: "Ohne anderslautende Abmachung gilt eine Garantie von 2 Jahren auf Produkte." },
-  { topic: "kauf", q: "Bei welchem Vertrag ist Schriftlichkeit gesetzlich vorgeschrieben?",
-    options: ["Velokauf", "Kreditvertrag und Leasing", "Restaurant-Bestellung", "Brockenhaus-Kauf"],
-    correct: 1, explanation: "Schriftlich vorgeschrieben: Kreditvertrag, Leasing, Vorauszahlungsvertrag, Grundstueckkauf." },
-  { topic: "kauf", q: "Was ist ein Vorauszahlungsvertrag?",
-    options: ["Ware sofort bezahlen", "Monatliche Raten ansparen, dann Ware erhalten", "Anzahlung leisten"],
-    correct: 1, explanation: "Vorauszahlungsvertrag: Monatliche Raten werden gespart. Erst wenn Summe zusammen ist, bekommt man die Ware. Heute fast nur noch in der Moebelbranche." },
-  { topic: "kauf", q: "Was ist ein Miet-Kauf-Vertrag?",
-    options: ["Mietzins wird mit Kaufpreis verrechnet (z.B. Musikinstrumente)", "Mietvertrag fuer Wohnung", "Kauf einer Mietwohnung"],
-    correct: 0, explanation: "Beim Miet-Kauf werden die bezahlten Mieten mit dem Kaufpreis verrechnet – haeufig bei Musikinstrumenten." },
-  { topic: "kauf", q: "Welche Pflichtangabe darf in einem Konsumkreditvertrag NICHT fehlen?",
-    options: ["Hinweis auf 14-Tage-Widerrufsrecht", "Foto des Kreditnehmers", "Bestaetigung der Eltern"],
-    correct: 0, explanation: "Pflichtinhalt: Widerrufsrecht, Kreditbetrag, Jahreszins, Gesamtkosten, Rueckzahlungsform, Kreditwuerdigkeitspruefung. Fehlt ein Punkt → ganzer Vertrag ungueltig!" },
-  { topic: "kauf", q: "Welcher Vertrag untersteht NICHT dem KKG?",
-    options: ["Barkredit Bank an Privatperson CHF 1'000 fuer persoenlichen Bedarf", "Kreditkartenvertrag", "Leasingvertrag fuer ein Geschaeftsauto"],
-    correct: 2, explanation: "Geschaeftsauto-Leasing ist NICHT konsumbedingt – also kein KKG. KKG gilt nur fuer Privatpersonen und persoenlichen Bedarf (CHF 500–80'000)." },
-  { topic: "kauf", q: "Wer muss bei Vertragsabschluss eines Konsumkredits geprueft werden?",
-    options: ["Nur der Arbeitgeber", "Kreditfaehigkeit des Konsumenten VOR Vertragsabschluss", "Niemand"],
-    correct: 1, explanation: "KKG: Die Kreditfaehigkeit muss VOR Vertragsabschluss geprueft werden – auch das Existenzminimum spielt eine Rolle." },
-  { topic: "kauf", q: "Wie sieht der Ablauf einer Betreibung aus?",
-    options: ["Klage → Urteil → Vollstreckung", "Glaeubiger reicht Betreibungsbegehren ein → Zahlungsbefehl → ggf. Rechtsvorschlag → Pfaendung → ggf. Verlustschein", "Mahnung → Inkasso → Gefaengnis"],
-    correct: 1, explanation: "Glaeubiger → Betreibungsbegehren beim BetreibungsAMT → Zahlungsbefehl an Schuldner → Schuldner kann zahlen oder Rechtsvorschlag erheben → Pfaendung/Verwertung → bei Mangel: Verlustschein." },
-  { topic: "kauf", q: "Was bedeutet 'Kompetenzstuecke' im Betreibungsrecht?",
-    options: ["Gegenstaende des taeglichen Bedarfs, die nicht gepfaendet werden duerfen", "Wertvolle Stuecke der Sammlung", "Beweisstuecke vor Gericht"],
-    correct: 0, explanation: "Kompetenzstuecke = lebensnotwendige Gegenstaende (z.B. Bett, Geschirr, Arbeitsgeraete), die nicht gepfaendet werden duerfen." },
+  // ---------- Helpers ----------
+  const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const dows = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+  const pad = n => String(n).padStart(2,'0');
+  const today = new Date(); today.setHours(0,0,0,0);
 
-  // ═══════════════════════ ARBEITSWELT (30) ═══════════════════════
-  { topic: "arbeit", q: "Wie lang ist die Kuendigungsfrist im 2.-9. Dienstjahr?",
-    options: ["1 Monat", "2 Monate", "3 Monate", "6 Monate"],
-    correct: 1, explanation: "OR 335c: Im 2.-9. Dienstjahr sind es 2 Monate auf Ende eines Monats. Ab dem 10. dann 3 Monate." },
-  { topic: "arbeit", q: "Wie lang ist die Kuendigungsfrist im 1. Dienstjahr?",
-    options: ["7 Tage", "1 Monat", "2 Monate", "3 Monate"],
-    correct: 1, explanation: "OR 335c: Im 1. Dienstjahr betraegt die Frist 1 Monat auf Ende eines Monats." },
-  { topic: "arbeit", q: "Wie lang ist die Kuendigungsfrist ab dem 10. Dienstjahr?",
-    options: ["1 Monat", "2 Monate", "3 Monate", "6 Monate"],
-    correct: 2, explanation: "Ab 10. Dienstjahr (nach 9 vollendeten Jahren): 3 Monate auf Ende eines Monats." },
-  { topic: "arbeit", q: "Welche Kuendigungsfrist gilt waehrend der Probezeit?",
-    options: ["3 Tage", "7 Tage auf jeden Wochentag", "14 Tage", "1 Monat"],
-    correct: 1, explanation: "Waehrend der Probezeit: 7 Tage Kuendigungsfrist, auf jeden Wochentag moeglich (OR 335b)." },
-  { topic: "arbeit", q: "Eine Kuendigung waehrend der Sperrfrist ist...",
-    options: ["Gueltig, aber spaeter wirksam", "Nichtig", "Nur missbraeuchlich", "Nur ohne Lohnanspruch gueltig"],
-    correct: 1, explanation: "Eine Kuendigung waehrend einer Sperrfrist ist NICHTIG – sie wird so behandelt, als haette es sie nie gegeben." },
-  { topic: "arbeit", q: "Wie lange dauert die Sperrfrist bei Krankheit im 1. Dienstjahr?",
-    options: ["7 Tage", "30 Tage", "90 Tage", "180 Tage"],
-    correct: 1, explanation: "1. Dienstjahr: 30 Tage Sperrfrist. 2.-8. Jahr: 90 Tage. Ab 9. Jahr: 180 Tage." },
-  { topic: "arbeit", q: "Wie lange dauert die Sperrfrist bei Krankheit im 5. Dienstjahr?",
-    options: ["30 Tage", "90 Tage", "180 Tage", "360 Tage"],
-    correct: 1, explanation: "Im 2.-8. Dienstjahr betraegt die Sperrfrist 90 Tage (= 3 Monate)." },
-  { topic: "arbeit", q: "Wie lange dauert die Sperrfrist bei Schwangerschaft und nach der Geburt?",
-    options: ["3 Monate Schwangerschaft + 8 Wochen nach Geburt", "Gesamte Schwangerschaft + 16 Wochen nach Geburt", "Nur 8 Wochen nach Geburt", "Gesamte Schwangerschaft + 8 Monate"],
-    correct: 1, explanation: "Die Sperrfrist gilt waehrend der GESAMTEN Schwangerschaft und 16 Wochen nach der Geburt." },
-  { topic: "arbeit", q: "Wie hoch ist der gesetzliche Ueberstundenzuschlag?",
-    options: ["10%", "25%", "50%", "Keiner – nur Freizeit moeglich"],
-    correct: 1, explanation: "Ueberstunden: 25% Lohnzuschlag oder Freizeit gleicher Dauer (mit Einverstaendnis AN). Nur Feiertagsarbeit: 50%." },
-  { topic: "arbeit", q: "Muss eine Kuendigung schriftlich begruendet werden?",
-    options: ["Ja, immer", "Nein, nie", "Nur auf Verlangen einer Partei", "Nur bei fristloser Kuendigung"],
-    correct: 2, explanation: "Eine Kuendigung muss NICHT zwingend begruendet werden – aber AUF VERLANGEN einer Partei MUSS sie schriftlich begruendet werden." },
-  { topic: "arbeit", q: "Bei einem allgemeinverbindlichen GAV gilt dieser fuer...",
-    options: ["Nur Verbandsmitglieder", "Nur den Arbeitgeber", "ALLE Berufsangehoerigen der Branche", "Nur ueber 18-Jaehrige"],
-    correct: 2, explanation: "Allgemeinverbindlich = vom Bundesrat erklaert. Dann gilt der GAV fuer ALLE in der Branche, auch Nichtmitglieder!" },
-  { topic: "arbeit", q: "Was bedeutet die Friedenspflicht beim GAV?",
-    options: ["Kein Krieg waehrend Vertrag", "Kein Streik waehrend Laufzeit – beidseitig", "Friedliche Loehne (Mindestlohn)", "Pflicht zum Verhandeln"],
-    correct: 1, explanation: "Friedenspflicht: Waehrend GAV-Laufzeit duerfen weder Arbeitnehmer streiken noch Arbeitgeber aussperren. Beidseitig!" },
-  { topic: "arbeit", q: "Bis zu welchem Alter haben Jugendliche Anrecht auf 5 Wochen Ferien?",
-    options: ["Bis 16 Jahre", "Bis 18 Jahre", "Bis 20 Jahre", "Bis 25 Jahre"],
-    correct: 2, explanation: "OR 329a: Bis zum 20. Altersjahr haben Arbeitnehmer Anrecht auf mindestens 5 Wochen Ferien." },
-  { topic: "arbeit", q: "Ein Arbeitnehmer wird waehrend der Ferien krank. Was passiert?",
-    options: ["Pech – Ferien sind weg", "Ferien werden mit Arztzeugnis nachgewaehrt", "Lohnausfall fuer Krankheitstage", "Nur halbe Ferien werden nachgewaehrt"],
-    correct: 1, explanation: "OR 329b: Krankheit waehrend Ferien = Ferien werden nachgewaehrt. Voraussetzung: Arztzeugnis als Nachweis." },
-  { topic: "arbeit", q: "Darf der Arbeitnehmer auf Ferien verzichten und sich auszahlen lassen?",
-    options: ["Ja, das ist sein Recht", "Nein, Ferien duerfen nicht durch Lohn abgegolten werden", "Nur mit Zustimmung des Arbeitgebers"],
-    correct: 1, explanation: "OR 329d: Ferien sind tatsaechliche Erholungszeit – sie duerfen waehrend des Arbeitsverhaeltnisses NICHT durch Geld ersetzt werden." },
-  { topic: "arbeit", q: "Ab wann besteht Anrecht auf Abgangsentschaedigung?",
-    options: ["Ab 40 Jahren + 10 Dienstjahre", "Ab 50 Jahren + 20 Dienstjahre", "Ab 60 Jahren + 25 Dienstjahre", "Generell ab 15 Dienstjahre"],
-    correct: 1, explanation: "OR 339b: Ab vollendetem 50. Altersjahr UND mindestens 20 Dienstjahren – dann 2 bis 8 Monatsloehne." },
-  { topic: "arbeit", q: "Worin liegt der Unterschied zwischen Gratifikation und 13. Monatslohn?",
-    options: ["Nur namentlicher Unterschied", "13. ML = vertraglich geschuldet; Gratifikation = freiwillige Sonderverguetung", "Gratifikation ist immer hoeher"],
-    correct: 1, explanation: "13. ML ist Lohnbestandteil, der vertraglich geschuldet ist. Gratifikation ist eine freiwillige Sonderverguetung des AG (Anspruch nur wenn vereinbart oder mehrmals vorbehaltlos bezahlt)." },
-  { topic: "arbeit", q: "Welche Mittagspause schreibt das ArG bei mehr als 9 Stunden Arbeit vor?",
-    options: ["15 Minuten", "30 Minuten", "1 Stunde", "Keine zwingende Pause"],
-    correct: 2, explanation: "Pflicht: 15 Min. bei >5,5h Arbeit; 30 Min. bei >7h; 1 Stunde bei >9h Arbeit." },
-  { topic: "arbeit", q: "Stichwort 'Jugendurlaub' – um was geht es?",
-    options: ["Zusatzferien fuer alle unter 20", "Bis 30 Jahre: 1 Woche/Jahr fuer leitende Taetigkeit in gemeinnuetziger Org. (2 Monate vorher anmelden)", "Schulferien"],
-    correct: 1, explanation: "Bis zum 30. Altersjahr: 1 Woche unbezahlten Urlaub pro Jahr fuer leitende Taetigkeit in einer gemeinnuetzigen Org. (OR 329e). Mind. 2 Monate vorher anmelden." },
-  { topic: "arbeit", q: "Wo sind die rechtlichen Grundlagen zum Arbeitsvertrag zu finden?",
-    options: ["ZGB und ArG", "OR und ArG", "BBG und ArG", "Nur im OR"],
-    correct: 1, explanation: "OR (Obligationenrecht, Art. 319 ff.) regelt den Einzelarbeitsvertrag (privates Recht); ArG regelt oeffentlich-rechtlichen Schutz (Arbeitszeiten etc.)." },
-  { topic: "arbeit", q: "Wer entscheidet bei Streitigkeiten ueber den Einzelarbeitsvertrag?",
-    options: ["Das Bundesamt fuer Berufsbildung", "Das Arbeitsgericht (zivilrechtlich)", "Das Strafgericht", "Das Verwaltungsgericht"],
-    correct: 1, explanation: "Bei Streit aus dem EAV ist das Zivil- bzw. Arbeitsgericht zustaendig." },
-  { topic: "arbeit", q: "Wer hat das Recht, einen GAV allgemeinverbindlich zu erklaeren?",
-    options: ["Das Parlament", "Der Bundesrat / die Kantonsregierung", "Die Gewerkschaft", "Der Arbeitgeberverband"],
-    correct: 1, explanation: "Der Bundesrat (auf Bundesebene) bzw. die Kantonsregierung kann einen GAV allgemeinverbindlich erklaeren." },
-  { topic: "arbeit", q: "Wie wird ein Normalarbeitsvertrag (NAV) eingesetzt?",
-    options: ["Standardvertrag fuer alle Bueroberufe", "Fuer bestimmte Berufsgruppen wie Landwirtschaft, Hausdienst, Krankenpflege – durch Kantone erlassen", "Vertrag fuer normale Buerger"],
-    correct: 1, explanation: "Der NAV ist ein Mustervertrag fuer Berufsgruppen wie Landwirtschaft, Hausdienst, Krankenpflege – wird von den Kantonen erlassen." },
-  { topic: "arbeit", q: "Was muss ein Arbeitszeugnis enthalten?",
-    options: ["Nur den Lohn", "Art und Dauer der Anstellung, Arbeitsleistung, Verhalten, Teamfaehigkeit", "Geheime Bewertung des Chefs"],
-    correct: 1, explanation: "Vollzeugnis: Art und Dauer der Beschaeftigung + Arbeitsleistung + Verhalten + Teamfaehigkeit. Auf Wunsch nur Arbeitsbestaetigung (Art und Dauer)." },
-  { topic: "arbeit", q: "Was kann der Arbeitnehmer tun, wenn das Zeugnis falsche Angaben enthaelt?",
-    options: ["Direkt zur Presse gehen", "Beim Arbeitsgericht eine Berichtigungsklage einreichen", "Nichts, der Chef hat immer recht"],
-    correct: 1, explanation: "Falls AG und AN sich nicht einigen koennen, kann der AN beim Arbeitsgericht eine Berichtigungsklage einreichen." },
-  { topic: "arbeit", q: "In welcher Sperrfrist liegt der Militaerdienst?",
-    options: ["Nur waehrend des Dienstes", "4 Wochen VOR und NACH dem Dienst", "8 Wochen vor und nach", "Nur 1 Woche vor und nach"],
-    correct: 1, explanation: "Sperrfrist Militaer/Zivilschutz/Zivildienst: 4 Wochen VOR und NACH dem Dienst (OR 336c)." },
-  { topic: "arbeit", q: "Was ist eine missbraeuchliche Kuendigung?",
-    options: ["Wenn der Chef vergisst zu kuendigen", "Kuendigung wegen Krankheit, Schwangerschaft, Gewerkschaftsmitgliedschaft etc.", "Kuendigung ohne Begruendung"],
-    correct: 1, explanation: "Missbraeuchlich z.B.: wegen persoenlicher Eigenschaften, Ausuebung verfassungsmaessiger Rechte, Vereiteln von Lohnanspruechen, Gewerkschaftsmitgliedschaft, Krankheit, Schwangerschaft, Militaer." },
-  { topic: "arbeit", q: "Kann der Arbeitnehmer von sich aus die Ferientermine bestimmen?",
-    options: ["Ja, das ist sein Recht", "Nein, der AG bestimmt – muss aber auf Wuensche Ruecksicht nehmen", "Nur einseitig im ersten Jahr"],
-    correct: 1, explanation: "Der Arbeitgeber bestimmt den Zeitpunkt der Ferien (OR 329). Er muss aber auf Wuensche des AN Ruecksicht nehmen, soweit mit Betrieb vereinbar." },
-  { topic: "arbeit", q: "Welche Form schreibt das Gesetz zwingend fuer den Einzelarbeitsvertrag vor?",
-    options: ["Einfache Schriftlichkeit", "Qualifizierte Schriftlichkeit", "Keine Form vorgeschrieben (muendlich gueltig)", "Oeffentliche Beurkundung"],
-    correct: 2, explanation: "Der EAV ist formfrei – also auch muendlich gueltig. Schriftlich wird aber dringend empfohlen!" },
-  { topic: "arbeit", q: "Ist der Arbeitgeber verpflichtet, Lohnvorschuss zu gewaehren?",
-    options: ["Ja, immer", "Nein, nie", "Wenn AN in Notlage – aber max. so viel wie tatsaechlich gearbeitet", "Immer 1 Monatslohn"],
-    correct: 2, explanation: "OR 323: Lohnvorschuss bei Notlage – aber max. so viel, wie der AN tatsaechlich bereits gearbeitet hat." },
+  // ---------- Calendar ----------
+  let viewYear = today.getFullYear(), viewMonth = today.getMonth();
+  let selectedDate = null;
+  const calTitle = document.getElementById('calTitle');
+  const calDow = document.getElementById('calDow');
+  const calDays = document.getElementById('calDays');
+  const dateVal = document.getElementById('dateVal');
+  const dateInput = document.getElementById('dateInput');
 
-  // ═══════════════════════ POLITIK (30) ═══════════════════════
-  { topic: "politik", q: "Wie viele Unterschriften braucht eine Volksinitiative auf Bundesebene?",
-    options: ["50'000", "100'000", "150'000", "200'000"],
-    correct: 1, explanation: "Volksinitiative: 100'000 gueltige Unterschriften in 18 Monaten. Fakultatives Referendum dagegen: 50'000 in 100 Tagen." },
-  { topic: "politik", q: "Wie viel Zeit bleibt zum Sammeln der Initiativ-Unterschriften?",
-    options: ["6 Monate", "12 Monate", "18 Monate", "24 Monate"],
-    correct: 2, explanation: "18 Monate ab Veroeffentlichung im Bundesblatt – 100'000 gueltige Unterschriften sammeln." },
-  { topic: "politik", q: "Was braucht es zur Annahme einer Volksinitiative?",
-    options: ["Nur Volksmehr", "Nur Staendemehr", "Volksmehr UND Staendemehr (mind. 12 Kantone)", "2/3-Mehrheit im Parlament"],
-    correct: 2, explanation: "Verfassungsaenderung braucht doppeltes Mehr: Volksmehr (Mehrheit der Stimmenden) + Staendemehr (Mehrheit der Kantone, mind. 12)." },
-  { topic: "politik", q: "Wie viele Unterschriften braucht das fakultative Referendum?",
-    options: ["30'000", "50'000", "100'000", "200'000"],
-    correct: 1, explanation: "Fakultatives Referendum: 50'000 Unterschriften in 100 Tagen – dann kommt das Gesetz vors Volk." },
-  { topic: "politik", q: "Innert welcher Frist muessen Unterschriften fuer ein fakultatives Referendum gesammelt werden?",
-    options: ["50 Tage", "100 Tage", "6 Monate", "1 Jahr"],
-    correct: 1, explanation: "100 Tage ab Veroeffentlichung des Gesetzes – 50'000 Unterschriften noetig." },
-  { topic: "politik", q: "Wann findet ein OBLIGATORISCHES Referendum statt?",
-    options: ["Bei jeder Gesetzesaenderung", "Bei Verfassungsaenderungen oder Beitritt zu Organisationen mit ueberstaatlichem Charakter (z.B. EU)", "Nur wenn 50'000 Unterschriften gesammelt werden", "Auf Wunsch des Bundesrats"],
-    correct: 1, explanation: "Obligatorisches Referendum: AUTOMATISCH bei Verfassungsaenderungen, Beitritt zu Organisationen mit ueberstaatlichem Charakter – braucht Volks- und Staendemehr." },
-  { topic: "politik", q: "Wie viele Mitglieder hat der Nationalrat?",
-    options: ["46", "100", "200", "246"],
-    correct: 2, explanation: "Nationalrat = 200 Mitglieder (Proporz, je nach Kantongroesse). Staenderat = 46 (2 pro Kanton, 1 pro Halbkanton)." },
-  { topic: "politik", q: "Wie viele Mitglieder hat der Staenderat?",
-    options: ["26", "46", "100", "200"],
-    correct: 1, explanation: "Staenderat: 46 Mitglieder – 2 pro Vollkanton, 1 pro Halbkanton. Vertreter der Kantone." },
-  { topic: "politik", q: "Welche Wahlart wird fuer den Nationalrat verwendet?",
-    options: ["Majorz (Mehrheitswahl)", "Proporz (Verhaeltniswahl)", "Mischsystem", "Akklamation"],
-    correct: 1, explanation: "Nationalrat = Proporz (Verhaeltniswahl) – Sitze nach Parteistaerke. Staenderat = Majorz (absolutes/relatives Mehr)." },
-  { topic: "politik", q: "Welche Wahlart wird fuer den Staenderat verwendet?",
-    options: ["Majorz", "Proporz", "Sortierung nach Alphabet", "Direkte Ernennung"],
-    correct: 0, explanation: "Staenderat = Majorz (Mehrheitswahl). Wer am meisten Stimmen hat, ist gewaehlt." },
-  { topic: "politik", q: "Was bedeutet 'Panaschieren'?",
-    options: ["Liste leer abgeben", "Kandidat doppelt aufschreiben", "Kandidaten anderer Parteien auf eigene Liste setzen", "Stimmzettel ungueltig machen"],
-    correct: 2, explanation: "Panaschieren: Kandidaten von anderen Parteilisten auf die eigene Liste schreiben. Kumulieren: einen Namen doppelt aufschreiben." },
-  { topic: "politik", q: "Was bedeutet 'Kumulieren'?",
-    options: ["Stimmzettel anhaeufen", "Einen Kandidatennamen zweimal auf die Liste schreiben (doppelte Stimme)", "Verschiedene Parteien mischen"],
-    correct: 1, explanation: "Kumulieren: Einen Namen doppelt auf die Liste schreiben – der Kandidat erhaelt zwei Stimmen." },
-  { topic: "politik", q: "Was ist das 'absolute Mehr'?",
-    options: ["Mehr als die Haelfte aller gueltigen Stimmen", "Wer am meisten Stimmen hat", "100% der Stimmen"],
-    correct: 0, explanation: "Absolutes Mehr = mehr als die Haelfte (Haelfte + 1) der gueltigen Stimmen. Wird im 1. Wahlgang verlangt." },
-  { topic: "politik", q: "Was ist das 'relative Mehr'?",
-    options: ["Mehr als 50%", "Wer am meisten Stimmen hat – gilt im 2. Wahlgang", "Mindestens 30%"],
-    correct: 1, explanation: "Relatives Mehr: Wer am meisten Stimmen hat, ist gewaehlt. Gilt im 2. Wahlgang, wenn niemand das absolute Mehr erreicht hat." },
-  { topic: "politik", q: "Wer waehlt den Bundesrat?",
-    options: ["Das Volk direkt", "Der Nationalrat", "Der Staenderat", "Die Vereinigte Bundesversammlung (Nationalrat + Staenderat zusammen)"],
-    correct: 3, explanation: "Die Vereinigte Bundesversammlung waehlt den Bundesrat alle 4 Jahre." },
-  { topic: "politik", q: "Welche drei Gewalten gibt es im Bundesstaat?",
-    options: ["Bundesrat, Parlament, Volk", "Legislative, Exekutive, Judikative", "Bund, Kanton, Gemeinde", "Links, Mitte, Rechts"],
-    correct: 1, explanation: "Gewaltenteilung: Legislative (gesetzgebend) = Parlament; Exekutive (ausfuehrend) = Bundesrat; Judikative (rechtsprechend) = Gerichte." },
-  { topic: "politik", q: "Was bedeutet das Kollegialitaetsprinzip?",
-    options: ["Bundesraete sind Kollegen", "Alle Bundesraete vertreten Entscheide gemeinsam nach aussen – auch wenn intern dagegen", "Jeder Bundesrat kann allein entscheiden", "Bundesrat tagt jeden Tag"],
-    correct: 1, explanation: "Kollegialitaetsprinzip: Auch wenn ein Bundesrat intern dagegen war – nach aussen vertreten alle 7 den Entscheid gemeinsam." },
-  { topic: "politik", q: "Welche Voraussetzungen muss man fuer das Stimmrecht erfuellen?",
-    options: ["Volljaehrig + Schweizer Buerger + handlungsfaehig", "Nur Schweizer Pass", "18 Jahre alt", "Wohnsitz in der Schweiz"],
-    correct: 0, explanation: "Stimmrecht in CH: mind. 18 Jahre + Schweizer Buergerin/Buerger + handlungsfaehig (nicht entmuendigt wegen Geisteskrankheit). BV Art. 136." },
-  { topic: "politik", q: "Wie hoch ist das Stimmrechtsalter in der Schweiz?",
-    options: ["16 Jahre", "18 Jahre", "20 Jahre", "21 Jahre"],
-    correct: 1, explanation: "Stimmrechtsalter Schweiz: 18 Jahre (seit 1991 von 20 auf 18 gesenkt)." },
-  { topic: "politik", q: "Was ist der Unterschied zwischen aktivem und passivem Wahlrecht?",
-    options: ["Es ist dasselbe", "Aktiv = waehlen koennen; Passiv = gewaehlt werden koennen", "Aktiv = im Wahlbuero arbeiten; Passiv = abstimmen"],
-    correct: 1, explanation: "Aktives Wahlrecht: Recht jemanden zu waehlen. Passives Wahlrecht: Recht, selbst kandidieren und gewaehlt werden zu koennen." },
-  { topic: "politik", q: "Welche Aufgabe hat der Bund?",
-    options: ["Primarschule", "Militaer, Aussenpolitik, AHV/IV, Autobahnen", "Feuerwehr", "Abwasser"],
-    correct: 1, explanation: "Bund: Militaer, Aussenpolitik, Sozialversicherungen (AHV/IV), Autobahnen, Umweltschutz." },
-  { topic: "politik", q: "Welche Aufgabe hat die Gemeinde?",
-    options: ["Militaer", "Spitaeler", "Primarschulen, Feuerwehr, Abwasser, Gemeindestrassen", "Aussenpolitik"],
-    correct: 2, explanation: "Gemeinde: Primarschulen, Feuerwehr, Abwasser, Gemeindestrassen, Kehricht." },
-  { topic: "politik", q: "Welche Aufgabe hat der Kanton?",
-    options: ["Militaer", "Kantonspolizei, Spitaeler, Gefaengnisse, Steuern", "Autobahnen", "Aussenpolitik"],
-    correct: 1, explanation: "Kanton: Kantonspolizei, Spitaeler, Gefaengnisse, Steuern, Bildung (teilweise), Umweltschutz." },
-  { topic: "politik", q: "Was unterscheidet eine Demokratie von einer Diktatur?",
-    options: ["Mehr Buerger", "Freie Wahlen + Opposition erlaubt + Gewaltenteilung", "Mehr Parteien", "Direkte Abstimmung"],
-    correct: 1, explanation: "Demokratie: Freie/ehrliche Wahlen, Opposition erlaubt, Gewaltenteilung, Grundrechte, Pressefreiheit. Diktatur: keines davon." },
-  { topic: "politik", q: "Welche Partei steht 'politisch links'?",
-    options: ["SVP", "FDP", "SP / Gruene", "CVP"],
-    correct: 2, explanation: "Links: SP (Sozialdemokraten) + Gruene. Mitte: CVP, EVP. Rechts: FDP, SVP." },
-  { topic: "politik", q: "Welche Partei vertritt klassische 'rechte' Positionen?",
-    options: ["SVP", "Gruene", "SP", "EVP"],
-    correct: 0, explanation: "Rechts: SVP (national, weniger Staat) und FDP (liberal, wirtschaftsfreundlich). SVP ist die rechteste etablierte Partei." },
-  { topic: "politik", q: "Was ist das Petitionsrecht?",
-    options: ["Recht auf Wahlteilnahme", "Recht, schriftliche Bitten an Behoerden zu richten – fuer alle (auch Auslaender und Jugendliche)", "Recht auf Volksabstimmung"],
-    correct: 1, explanation: "Petitionsrecht (BV 33): Jede Person darf Bitten an Behoerden richten. Behoerde muss entgegennehmen, aber nicht antworten. Auch Auslaender/Minderjaehrige." },
-  { topic: "politik", q: "Was ist eine Fraktion im Parlament?",
-    options: ["Eine Gruppe aller Politiker", "Ein Zusammenschluss von mind. 5 Parlamentsmitgliedern aus gleicher/aehnlicher Partei", "Ein Streit im Parlament"],
-    correct: 1, explanation: "Fraktion: mind. 5 Parlamentsmitglieder gleicher oder verwandter Parteien schliessen sich zusammen, um gemeinsam zu agieren." },
-  { topic: "politik", q: "Wie oft wird der Bundespraesident gewaehlt?",
-    options: ["Alle 4 Jahre", "Jedes Jahr aus dem Bundesrat", "Auf Lebenszeit", "Alle 2 Jahre"],
-    correct: 1, explanation: "Bundespraesident: wird jedes Jahr aus dem Bundesrat gewaehlt – ist 'primus inter pares' (Erster unter Gleichen), reine Repraesentationsfunktion." },
-  { topic: "politik", q: "Wo ist die Menschenwuerde in der Schweizer Verfassung geregelt?",
-    options: ["BV Art. 1", "BV Art. 7", "BV Art. 15", "BV Art. 24"],
-    correct: 1, explanation: "BV Art. 7: Menschenwuerde. Art. 8 = Rechtsgleichheit, Art. 15 = Religionsfreiheit, Art. 24 = Niederlassungsfreiheit." },
+  dows.forEach(d => { const el=document.createElement('div'); el.className='cal-dow'; el.textContent=d; calDow.appendChild(el); });
 
-  // ═══════════════════════ WOHNEN (30) ═══════════════════════
-  { topic: "wohnen", q: "Wo ist das Mietrecht in der Schweiz geregelt?",
-    options: ["ZGB (Zivilgesetzbuch)", "OR (Obligationenrecht) Art. 253 ff.", "Bundesverfassung", "Mietgesetz (MG)"],
-    correct: 1, explanation: "Mietrecht = OR Art. 253 ff. (Obligationenrecht). Bei Streit zwischen Mieter und Vermieter gelten diese Bestimmungen." },
-  { topic: "wohnen", q: "Wie hoch darf die Mietkaution maximal sein?",
-    options: ["1 Monatsmiete", "2 Monatsmieten", "3 Monatsmieten", "6 Monatsmieten"],
-    correct: 2, explanation: "Maximal 3 Monatsmietzinse – die Kaution wird auf einem Bankkonto hinterlegt zugunsten des Vermieters." },
-  { topic: "wohnen", q: "Welche Kuendigungsfrist gilt fuer eine Wohnung?",
-    options: ["1 Monat", "2 Monate", "3 Monate", "6 Monate"],
-    correct: 2, explanation: "Wohnung: 3 Monate auf ortsueblichen Termin. Geschaeftsraum: 6 Monate. Moebliertes Zimmer: 2 Wochen auf Monatsende." },
-  { topic: "wohnen", q: "Welche Kuendigungsfrist gilt fuer Geschaeftsraeume?",
-    options: ["1 Monat", "3 Monate", "6 Monate", "1 Jahr"],
-    correct: 2, explanation: "Geschaeftsraeume: 6 Monate auf ortsueblichen Termin." },
-  { topic: "wohnen", q: "Welche Kuendigungsfrist gilt fuer ein moebliertes Zimmer?",
-    options: ["3 Tage", "2 Wochen auf ein Monatsende", "1 Monat", "3 Monate"],
-    correct: 1, explanation: "Moebliertes Zimmer: 2 Wochen Kuendigungsfrist auf ein Monatsende." },
-  { topic: "wohnen", q: "Welche Kuendigungsfrist gilt fuer bewegliche Sachen (z.B. Auto-Miete)?",
-    options: ["3 Tage, beliebiger Zeitpunkt", "2 Wochen", "1 Monat", "Keine"],
-    correct: 0, explanation: "Bewegliche Sachen: nur 3 Tage Kuendigungsfrist – zu einem beliebigen Zeitpunkt." },
-  { topic: "wohnen", q: "Wer muss die Gluehbirne ersetzen?",
-    options: ["Der Vermieter", "Der Mieter", "Beide gemeinsam", "Der Hauswart"],
-    correct: 1, explanation: "Gluehbirnen = kleine Ausbesserung = Mietersache. Grosse Sachen wie Boiler, Kochherd = Vermietersache." },
-  { topic: "wohnen", q: "Wer muss einen verkalkten Boiler ersetzen?",
-    options: ["Der Mieter (Sorgfaltspflicht)", "Der Vermieter", "Beide haelftig"],
-    correct: 1, explanation: "Boiler ersetzen = grosse Reparatur = Vermietersache (Instandhaltungspflicht)." },
-  { topic: "wohnen", q: "Wer haftet fuer einen Sprung in der Fensterscheibe?",
-    options: ["Der Mieter – das ist KEINE normale Abnuetzung", "Der Vermieter", "Niemand"],
-    correct: 0, explanation: "Sprung in Fensterscheibe = nicht normale Abnuetzung. Der Mieter haftet." },
-  { topic: "wohnen", q: "Wer zahlt Verfaerbungen auf Tapeten durch aufgehaengte Bilder?",
-    options: ["Der Mieter (Schaden)", "Der Vermieter (normale Abnuetzung)", "Niemand"],
-    correct: 1, explanation: "Verfaerbungen durch Bilder/Moebel = normale Abnuetzung. Der Vermieter traegt die Kosten." },
-  { topic: "wohnen", q: "Eine Kuendigung des Vermieters ohne offizielles Formular ist...",
-    options: ["Gueltig wenn schriftlich", "Nichtig", "Nur gueltig mit Begruendung", "Nur per Einschreiben gueltig"],
-    correct: 1, explanation: "Vermieter MUSS das offizielle kantonale Kuendigungsformular verwenden. Sonst: NICHTIG, Mieter muss sie nicht beachten." },
-  { topic: "wohnen", q: "Eine Kuendigung der Familienwohnung – was ist noetig?",
-    options: ["Nur Ehemann unterschreibt", "BEIDE Ehegatten muessen zustimmen", "Nur Hauptmieter", "Notar muss anwesend sein"],
-    correct: 1, explanation: "Familienwohnung: BEIDE Ehegatten muessen zustimmen, auch wenn nur einer den Mietvertrag unterschrieben hat. Sonst nichtig." },
-  { topic: "wohnen", q: "Ist eine telefonische Kuendigung gueltig?",
-    options: ["Ja", "Nein – schriftlich noetig (am besten eingeschrieben)", "Nur bei moeblierten Zimmern"],
-    correct: 1, explanation: "Telefonische Kuendigung ist NICHT rechtsguelig. Es muss schriftlich erfolgen – beim Vermieter sollte sie per Einschreiben verschickt werden." },
-  { topic: "wohnen", q: "Wie kann ein Mieter vorzeitig ohne Mietzins kuendigen?",
-    options: ["Mit Arztzeugnis", "Indem er einen zumutbaren Ersatzmieter stellt", "Bei Jobwechsel", "Bei Heirat"],
-    correct: 1, explanation: "Vorzeitiger Auszug ohne weiteren Mietzins: Mieter stellt einen zahlungsfaehigen und zumutbaren Ersatzmieter, der den Vertrag zu gleichen Bedingungen uebernimmt." },
-  { topic: "wohnen", q: "Ein Mieter bemerkt einen Mangel. Was ist der ERSTE Schritt?",
-    options: ["Mietzins sofort reduzieren", "Mangel selbst reparieren", "Mangel schriftlich dem Vermieter melden", "Schlichtungsbehoerde kontaktieren"],
-    correct: 2, explanation: "Stufenplan: 1) Mangel SCHRIFTLICH melden. 2) Falls keine Reaktion: Mietzinsherabsetzung. 3) Mietzins hinterlegen. 4) Notreparatur." },
-  { topic: "wohnen", q: "Wie lange hat man Zeit, eine Mietzinserhoehung anzufechten?",
-    options: ["7 Tage", "14 Tage", "30 Tage", "60 Tage"],
-    correct: 2, explanation: "30 Tage nach Erhalt der Erhoehung – bei der kantonalen Schlichtungsstelle anfechten." },
-  { topic: "wohnen", q: "Was ist Voraussetzung fuer eine gueltige Mietzinserhoehung?",
-    options: ["Nur muendliche Mitteilung reicht", "Offizielles Formular + Begruendung + 10 Tage vor Beginn der Kuendigungsfrist", "Nur 1 Tag Vorankuendigung"],
-    correct: 1, explanation: "Mietzinserhoehung muss auf offiziellem Formular angekuendigt + schriftlich begruendet + 10 Tage vor Beginn der Kuendigungsfrist beim Mieter sein." },
-  { topic: "wohnen", q: "Wie lange ist die maximale Erstreckung einer Wohnung?",
-    options: ["2 Jahre", "4 Jahre", "6 Jahre", "Unbegrenzt"],
-    correct: 1, explanation: "Maximale Erstreckung: Wohnung 4 Jahre, Geschaeftsraeume 6 Jahre. Beantragt bei der kantonalen Schlichtungsbehoerde." },
-  { topic: "wohnen", q: "Wie lange ist die maximale Erstreckung von Geschaeftsraeumen?",
-    options: ["3 Jahre", "4 Jahre", "6 Jahre", "10 Jahre"],
-    correct: 2, explanation: "Geschaeftsraeume koennen um max. 6 Jahre erstreckt werden." },
-  { topic: "wohnen", q: "Wer kann nach dem Tod des Mieters den Vertrag kuendigen?",
-    options: ["Niemand – Vertrag laeuft normal weiter", "Die Erben fristlos", "Die Erben auf den naechstmoeglichen gesetzlichen Termin", "Nur der Ehepartner"],
-    correct: 2, explanation: "Beim Tod des Mieters koennen die Erben auf den naechstmoeglichen gesetzlichen Termin kuendigen – NICHT fristlos." },
-  { topic: "wohnen", q: "Was ist eine Untermiete?",
-    options: ["Wenn man unter dem Markt mietet", "Die Weitervermietung einer gemieteten Sache", "Eine Miete ohne Vertrag"],
-    correct: 1, explanation: "Untermiete = Weitervermietung. Der Hauptmieter braucht die Zustimmung des Vermieters. Der Vermieter darf nur unter bestimmten Umstaenden ablehnen." },
-  { topic: "wohnen", q: "Welche Nebenkosten muss der Mieter NICHT zahlen?",
-    options: ["Heizungskosten", "Treppenhausreinigung", "Fassadenrenovation", "Kehrichtabfuhr"],
-    correct: 2, explanation: "Fassadenrenovation = Vermietersache. Der Mieter zahlt nur eigentliche Betriebskosten (Heizung, Warmwasser, Reinigung, Kehricht etc.)." },
-  { topic: "wohnen", q: "Welche Nebenkosten muss der Mieter zahlen?",
-    options: ["Renovation Treppenhaus", "Einbau neuer Badewanne", "Heizung, Warmwasser, Treppenhausreinigung, Kehricht", "Gebaeudeversicherung"],
-    correct: 2, explanation: "Mieter zahlt: Heizung, Warmwasser, Treppenhausreinigung, Kaminfeger, Gartenpflege, Servicegebuehren Heizung, Kehricht. Nicht: bauliche Massnahmen." },
-  { topic: "wohnen", q: "Wann kann der Mieter den Anfangsmietzins anfechten?",
-    options: ["Immer innert 30 Tagen", "Bei persoenlicher/familiaerer Notlage ODER wenn Mietzins >10% hoeher als beim Vorgaenger (innert 30 Tagen)", "Nie"],
-    correct: 1, explanation: "OR 270: Anfangsmietzins anfechten innert 30 Tagen nach Uebernahme – wenn Mieter in Notlage war ODER Mietzins um mehr als 10% gestiegen ist." },
-  { topic: "wohnen", q: "Welche Frist hat der Vermieter dem Mieter bei Zahlungsverzug zu setzen?",
-    options: ["7 Tage", "30 Tage mit Kuendigungsandrohung", "3 Monate", "Sofortige Kuendigung"],
-    correct: 1, explanation: "Bei Zahlungsverzug setzt der Vermieter eine Zahlungsfrist von 30 Tagen mit Kuendigungsandrohung. Erst danach kann fristlos gekuendigt werden." },
-  { topic: "wohnen", q: "Kann ein neuer Eigentuemer Mieter einfach kuendigen?",
-    options: ["Ja, jederzeit", "Nur bei dringendem Eigenbedarf fuer sich oder nahe Verwandte", "Nie"],
-    correct: 1, explanation: "Beim Verkauf einer Liegenschaft: Der neue Eigentuemer kann nur kuendigen, wenn er dringenden Eigenbedarf nachweist." },
-  { topic: "wohnen", q: "Wer ist Eigentuemer beim Leasing?",
-    options: ["Leasingnehmer", "Leasinggeber", "Bank"],
-    correct: 1, explanation: "Beim Leasing bleibt der Leasinggeber Eigentuemer der Sache – wie bei Miete." },
-  { topic: "wohnen", q: "Bis wann muss ein Kuendigungsschreiben beim Vermieter sein?",
-    options: ["Am ersten Tag der Kuendigungsfrist", "Am letzten Tag vor Beginn der Kuendigungsfrist (Poststempel gilt)", "1 Woche vorher"],
-    correct: 1, explanation: "Das Kuendigungsschreiben muss am letzten Tag vor Beginn der Kuendigungsfrist beim Vermieter eintreffen. Poststempel gilt." },
-  { topic: "wohnen", q: "Ein Mieter baut ohne Zustimmung eine Trennwand ein. Was geschieht beim Auszug?",
-    options: ["Der Vermieter muss die Einbaukosten ersetzen", "Der Mieter muss auf eigene Kosten den urspruenglichen Zustand wiederherstellen", "Der naechste Mieter zahlt"],
-    correct: 1, explanation: "Bauliche Veraenderungen ohne Vermieter-Zustimmung: Mieter muss auf eigene Kosten den urspruenglichen Zustand wiederherstellen. Der Vermieter muss nichts vergueten." },
-  { topic: "wohnen", q: "Was gilt als 'normale Abnuetzung' (kein Schadenersatz)?",
-    options: ["Brandloecher im Polster", "Spruenge in Fensterscheiben", "Zugeklebte Duebelloecher und Tapetenverfaerbungen durch Bilder", "Flecken auf Spannteppichen"],
-    correct: 2, explanation: "Normale Abnuetzung: zugeklebte Duebelloecher, Tapetenverfaerbungen durch Bilder oder Moebel. NICHT normal: Brandloecher, Spruenge, grobe Flecken." },
-
-  // ═══════════════════════ INTERNATIONALE ORGANISATIONEN (30) ═══════
-  { topic: "intl", q: "Wann ist die Schweiz der UNO beigetreten?",
-    options: ["1945", "1971", "1990", "2002"],
-    correct: 3, explanation: "Die Schweiz trat der UNO erst 2002 bei – nach einer Volksabstimmung. Bis dahin war sie Beobachter und in vielen Sonderorganisationen." },
-  { topic: "intl", q: "Wann wurde die UNO gegruendet?",
-    options: ["1919", "1945", "1949", "1956"],
-    correct: 1, explanation: "Die UNO wurde 1945 in San Francisco gegruendet – als Nachfolgerin des Voelkerbundes nach dem 2. Weltkrieg." },
-  { topic: "intl", q: "Wie viele Mitgliedstaaten hat die UNO?",
-    options: ["100", "150", "193", "210"],
-    correct: 2, explanation: "193 Mitgliedstaaten – das sind praktisch alle Staaten der Welt (ausser Vatikanstadt)." },
-  { topic: "intl", q: "Wo befindet sich der Hauptsitz der UNO?",
-    options: ["Genf", "New York", "Wien", "Bruessel"],
-    correct: 1, explanation: "Hauptsitz: New York (USA). Europaeischer Sitz: Genf (Palais des Nations)." },
-  { topic: "intl", q: "Wie viele staendige Mitglieder hat der UNO-Sicherheitsrat?",
-    options: ["3", "5", "10", "15"],
-    correct: 1, explanation: "5 staendige Mitglieder (USA, Russland, China, Frankreich, Grossbritannien) mit VETORECHT. Plus 10 nicht-staendige Mitglieder (je 2 Jahre)." },
-  { topic: "intl", q: "Welche Staaten haben das VETORECHT im UNO-Sicherheitsrat?",
-    options: ["Alle 15 Mitglieder", "Nur USA und Russland", "USA, Russland, China, Frankreich, Grossbritannien", "Die 10 nicht-staendigen"],
-    correct: 2, explanation: "Vetorecht haben die 5 staendigen Mitglieder: USA, Russland, China, Frankreich, Grossbritannien." },
-  { topic: "intl", q: "Was ist 'Peacekeeping'?",
-    options: ["Friedenserhaltend mit Blauhelmen – alle Parteien muessen zustimmen", "Frieden mit Waffengewalt erzwingen", "Friedensgespraeche organisieren"],
-    correct: 0, explanation: "Peacekeeping = friedenserhaltend. Blauhelme (oft unbewaffnet). Alle Parteien muessen zustimmen. Haeufigste Form." },
-  { topic: "intl", q: "Was ist 'Peace-Enforcement'?",
-    options: ["Friedensbildung nach einem Konflikt", "Mit militaerischen Mitteln Frieden erzwingen (Sanktionen, Blockaden, Militaereinsatz)", "Diplomatische Vermittlung"],
-    correct: 1, explanation: "Peace-Enforcement = friedenserzwingend. Reaktion auf offene Aggressionen mit Sanktionen, Blockaden oder Militaereinsatz (z.B. Golfkrieg 1991)." },
-  { topic: "intl", q: "Wofuer steht WHO?",
-    options: ["Weltgesundheitsorganisation", "World Honor Order", "Weltarbeitsbuero", "Weltwirtschaftsforum"],
-    correct: 0, explanation: "WHO = World Health Organization = Weltgesundheitsorganisation. UNO-Sonderorganisation fuer Gesundheit." },
-  { topic: "intl", q: "Wofuer steht UNICEF?",
-    options: ["UNO-Frauenrat", "Kinderhilfswerk der UNO", "Klimaschutz-Org.", "Sicherheitsdienst"],
-    correct: 1, explanation: "UNICEF = United Nations Children's Fund = Kinderhilfswerk der Vereinten Nationen." },
-  { topic: "intl", q: "Wofuer steht UNHCR?",
-    options: ["UNO-Klimarat", "Hochkommissariat fuer Fluechtlinge", "Wirtschaftsrat", "Schulbehoerde"],
-    correct: 1, explanation: "UNHCR = UN High Commissioner for Refugees = Hochkommissariat fuer Fluechtlinge. Schutz von Fluechtlingen weltweit." },
-  { topic: "intl", q: "Welche der folgenden ist KEINE UNO-Sonderorganisation?",
-    options: ["WHO (Gesundheit)", "UNICEF (Kinder)", "UNESCO (Kultur)", "NATO (Verteidigung)"],
-    correct: 3, explanation: "NATO ist KEINE UNO-Sonderorganisation – sie ist ein eigenstaendiges Militaerbuendnis. WHO, UNICEF, UNESCO, FAO, IWF, Weltbank, UNHCR gehoeren zur UNO." },
-  { topic: "intl", q: "Was regelt das Schengen-Abkommen?",
-    options: ["Zustaendigkeit bei Asylverfahren", "Abschaffung der Grenzkontrollen", "Gemeinsame Waehrung", "Freihandel"],
-    correct: 1, explanation: "Schengen = Wegfall der Grenzkontrollen INNERHALB des Schengen-Raums. Schweiz ist Teil davon!" },
-  { topic: "intl", q: "Was regelt das Dublin-Abkommen?",
-    options: ["Wegfall der Grenzkontrollen", "Zustaendigkeit bei Asylverfahren", "Steuerharmonisierung", "Atomenergiekontrolle"],
-    correct: 1, explanation: "Dublin = Zustaendigkeit bei Asylverfahren. Das ERSTE Einreiseland ist zustaendig. Verhindert 'Asyl-Shopping'." },
-  { topic: "intl", q: "Was ist Eurodac?",
-    options: ["EU-Datenbank fuer Fingerabdruecke (im Rahmen Dublin)", "EU-Waehrung", "EU-Polizei"],
-    correct: 0, explanation: "Eurodac = EU-Fingerabdruckdatenbank im Rahmen von Dublin. Verhindert, dass jemand in mehreren Laendern asyl beantragt." },
-  { topic: "intl", q: "Wie viele Mitgliedstaaten hat die EU seit dem Brexit?",
-    options: ["25", "27", "28", "30"],
-    correct: 1, explanation: "Seit dem Brexit (Anfang 2020) hat die EU 27 Mitgliedstaaten." },
-  { topic: "intl", q: "Seit wann ist die EU eine supranationale Organisation?",
-    options: ["Seit 1957 (Roemervertraege)", "Seit dem Vertrag von Lissabon (2009)", "Seit der Gruendung der EWG", "Seit 1992 (Maastricht)"],
-    correct: 1, explanation: "Seit dem Vertrag von Lissabon 2009 ist die EU eine eigene Rechtspersoenlichkeit und supranational." },
-  { topic: "intl", q: "Was sind die 'vier Freiheiten' des EU-Binnenmarkts?",
-    options: ["Pressefreiheit, Meinungs-, Religions-, Versammlungsfreiheit", "Personen, Waren, Dienstleistungen, Kapital", "Sprache, Religion, Kultur, Politik"],
-    correct: 1, explanation: "Vier Freiheiten: freier Verkehr von Personen, Waren, Dienstleistungen und Kapital im EU-Binnenmarkt." },
-  { topic: "intl", q: "Was ist der Unterschied zwischen Europarat und Europaeischem Rat?",
-    options: ["Es ist dasselbe", "Europarat = EU-Organ; Europ. Rat = Menschenrechte", "Europarat = 46 Laender, Menschenrechte (Strassburg); Europ. Rat = EU-Gipfel der 27 Regierungschefs", "Europarat = nur Frankreich, Europ. Rat = ganz Europa"],
-    correct: 2, explanation: "Beruehmte Verwechslung! Europarat (Council of Europe) = 46 Laender, Menschenrechte, Strassburg, UNABHAENGIG von EU. Europ. Rat = EU-Organ, Gipfel der 27 Regierungschefs." },
-  { topic: "intl", q: "Wo hat der Europaeische Gerichtshof (EuGH der EU) seinen Sitz?",
-    options: ["Strassburg", "Luxemburg", "Bruessel", "Den Haag"],
-    correct: 1, explanation: "Europaeischer Gerichtshof (EU): Sitz in Luxemburg, 27 Richter, hoechste rechtliche Instanz der EU." },
-  { topic: "intl", q: "Wo hat der Europ. Gerichtshof fuer Menschenrechte (EGMR) seinen Sitz?",
-    options: ["Bruessel", "Strassburg", "Luxemburg", "Genf"],
-    correct: 1, explanation: "EGMR (Europarat): Sitz in Strassburg. Beurteilt Verstoesse gegen die EMRK. Urteile sind bindend!" },
-  { topic: "intl", q: "Was bedeutet EMRK?",
-    options: ["Europ. Marktregulierungskommission", "Europ. Menschenrechtskonvention (1950, Europarat)", "Eurasian Market Regulation Council"],
-    correct: 1, explanation: "EMRK = Europaeische Menschenrechtskonvention von 1950 – wichtigste Konvention des Europarats." },
-  { topic: "intl", q: "Wer hat das Internationale Komitee vom Roten Kreuz (IKRK) gegruendet?",
-    options: ["Mahatma Gandhi", "Henry Dunant", "Nelson Mandela", "Albert Schweitzer"],
-    correct: 1, explanation: "Henry Dunant – ein Schweizer – gruendete 1863 das IKRK. Der Sitz ist in Genf. Es ist ein privater Verein nach schweiz. Zivilrecht." },
-  { topic: "intl", q: "Was sind die Genfer Konventionen?",
-    options: ["EU-Vertraege", "4 Abkommen zum Schutz von Kriegsopfern und Gefangenen (194 Staaten)", "UNO-Charta"],
-    correct: 1, explanation: "Genfer Konventionen: 4 voelkerrechtliche Abkommen zum Schutz von Kriegsopfern, Verwundeten, Schiffbruechigen, Kriegsgefangenen und Zivilisten. 194 Vertragsstaaten." },
-  { topic: "intl", q: "Ist die Schweiz NATO-Mitglied?",
-    options: ["Ja, seit 1949", "Ja, seit 1994", "Nein, aber Teil der 'Partnerschaft fuer den Frieden' (PfP)", "Nein, gar keine Zusammenarbeit"],
-    correct: 2, explanation: "Schweiz ist KEIN NATO-Mitglied (Neutralitaet). Aber seit 1994 in der 'Partnerschaft fuer den Frieden' (PfP) – gemeinsame Uebungen fuer humanitaere Einsaetze." },
-  { topic: "intl", q: "Was bedeutet NATO-Artikel 5?",
-    options: ["Beistandspflicht: Angriff auf einen = Angriff auf alle", "Verbot von Atomwaffen", "Pflicht zur Demokratie", "Wirtschaftliche Zusammenarbeit"],
-    correct: 0, explanation: "Artikel 5 = Beistandspflicht. Bei einem Angriff auf einen Mitgliedstaat sind alle anderen zur Hilfe verpflichtet." },
-  { topic: "intl", q: "Wo hat die OSZE ihren Sitz?",
-    options: ["Bruessel", "Wien", "Strassburg", "Genf"],
-    correct: 1, explanation: "OSZE (Organisation fuer Sicherheit und Zusammenarbeit in Europa): Sitz Wien. 57 Mitgliedstaaten. Schweiz ist Gruenderstaat (1975)." },
-  { topic: "intl", q: "Was bedeutet 'supranational' (z.B. EU)?",
-    options: ["Sehr grosse Organisation", "Entscheide sind fuer alle Mitglieder bindend – auch ohne explizite Zustimmung", "Mehr als 10 Mitglieder", "Mit eigener Waehrung"],
-    correct: 1, explanation: "Supranational = ueberstaatlich = Entscheide binden alle Mitglieder, auch ohne deren explizite Zustimmung. EU seit Lissabon 2009. UNO/NATO sind dagegen 'international' (nicht bindend)." },
-  { topic: "intl", q: "Hat die Schweiz den EWR-Beitritt angenommen?",
-    options: ["Ja, 1992", "Nein, 1992 abgelehnt", "Nie zur Abstimmung gekommen"],
-    correct: 1, explanation: "Die Schweiz hat 1992 den EWR-Beitritt knapp abgelehnt (50.3% Nein). Stattdessen: Bilaterale Abkommen I (1999) und II (2004)." },
-  { topic: "intl", q: "Was ist KEIN Grundsatz des IKRK?",
-    options: ["Menschlichkeit", "Neutralitaet", "Politisches Engagement", "Unabhaengigkeit"],
-    correct: 2, explanation: "IKRK-Grundsaetze: Menschlichkeit, Unparteilichkeit, Neutralitaet, Unabhaengigkeit, Freiwilligkeit, Universalitaet. Politisches Engagement WIDERSPRICHT der Neutralitaet!" },
-];
-
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+  function renderCal(){
+    calTitle.textContent = months[viewMonth] + ' ' + viewYear;
+    calDays.innerHTML = '';
+    const first = new Date(viewYear, viewMonth, 1);
+    let startDow = (first.getDay()+6)%7; // Montag = 0
+    const daysInMonth = new Date(viewYear, viewMonth+1, 0).getDate();
+    for(let i=0;i<startDow;i++){ const e=document.createElement('div'); e.className='cal-day empty'; calDays.appendChild(e); }
+    for(let d=1; d<=daysInMonth; d++){
+      const btn=document.createElement('button'); btn.type='button'; btn.className='cal-day'; btn.textContent=d;
+      const dt=new Date(viewYear,viewMonth,d);
+      if(dt<today){ btn.disabled=true; }
+      if(selectedDate && dt.getTime()===selectedDate.getTime()){ btn.classList.add('sel'); }
+      btn.addEventListener('click',()=>{
+        selectedDate=dt;
+        dateInput.value = viewYear+'-'+pad(viewMonth+1)+'-'+pad(d);
+        dateVal.textContent = pad(d)+'.'+pad(viewMonth+1)+'.'+viewYear;
+        dateVal.classList.add('set');
+        renderCal();
+        closeAll();
+      });
+      calDays.appendChild(btn);
+    }
   }
-  return a;
-}
-
-const TOPIC_NAMES = {
-  kauf: "Kauf und Konsum",
-  arbeit: "Arbeitswelt",
-  politik: "Politische Entscheidungsprozesse",
-  wohnen: "Wohnen",
-  intl: "Internationale Organisationen",
-};
-
-let state = { questions: [], current: 0, score: 0, answers: [] };
-
-function startQuiz(filter) {
-  let pool;
-  if (filter === "all") pool = shuffle(ALL_QUESTIONS);
-  else pool = shuffle(ALL_QUESTIONS.filter(q => q.topic === filter));
-  const n = parseInt(document.getElementById("num-questions").value);
-  const qs = n === -1 ? pool : pool.slice(0, n);
-  state = { questions: qs, current: 0, score: 0, answers: [] };
-  document.getElementById("start-screen").style.display = "none";
-  document.getElementById("result-screen").style.display = "none";
-  document.getElementById("quiz-screen").style.display = "block";
-  document.getElementById("q-total").textContent = qs.length;
-  window.scrollTo(0, 0);
-  showQuestion();
-}
-
-function showQuestion() {
-  const q = state.questions[state.current];
-  document.getElementById("topic-label").textContent = TOPIC_NAMES[q.topic];
-  document.getElementById("q-current").textContent = state.current + 1;
-  document.getElementById("score-label").textContent = state.score;
-  document.getElementById("progress-bar").style.width = Math.round((state.current / state.questions.length) * 100) + "%";
-  document.getElementById("question-text").textContent = q.q;
-  document.getElementById("feedback").style.display = "none";
-  document.getElementById("next-btn").style.display = "none";
-
-  const container = document.getElementById("options-container");
-  container.innerHTML = "";
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement("button");
-    btn.className = "option-btn";
-    btn.textContent = opt;
-    btn.onclick = () => pickAnswer(i);
-    container.appendChild(btn);
+  document.getElementById('prevMonth').addEventListener('click',()=>{
+    if(viewYear===today.getFullYear() && viewMonth===today.getMonth()) return;
+    viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--;} renderCal();
   });
-}
+  document.getElementById('nextMonth').addEventListener('click',()=>{
+    viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++;} renderCal();
+  });
+  renderCal();
 
-function pickAnswer(picked) {
-  const q = state.questions[state.current];
-  const isCorrect = picked === q.correct;
-  state.answers.push({ question: q, picked, correct: isCorrect });
-  if (isCorrect) state.score++;
-
-  const btns = document.querySelectorAll("#options-container .option-btn");
-  btns.forEach((btn, i) => {
-    btn.disabled = true;
-    if (i === q.correct) btn.classList.add("option-correct");
-    else if (i === picked) btn.classList.add("option-wrong");
+  // ---------- Time slots ----------
+  const slotsWrap = document.getElementById('slots');
+  const timeVal = document.getElementById('timeVal');
+  const timeInput = document.getElementById('timeInput');
+  const times = ['07:30'];
+  let mins = 8*60; // ab 08:00
+  while(mins <= 19*60){
+    times.push(pad(Math.floor(mins/60))+':'+pad(mins%60));
+    mins += 45;
+  }
+  times.forEach(t=>{
+    const b=document.createElement('button'); b.type='button'; b.className='slot'; b.textContent=t;
+    b.addEventListener('click',()=>{
+      slotsWrap.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));
+      b.classList.add('sel');
+      timeInput.value=t; timeVal.textContent=t; timeVal.classList.add('set');
+      closeAll();
+    });
+    slotsWrap.appendChild(b);
   });
 
-  const fb = document.getElementById("feedback");
-  fb.className = "feedback " + (isCorrect ? "feedback-correct" : "feedback-wrong");
-  fb.style.display = "block";
-  fb.innerHTML = (isCorrect ? "<strong>Richtig!</strong> " : "<strong>Falsch.</strong> ") + q.explanation;
+  // ---------- Popover toggling ----------
+  const dateTrigger=document.getElementById('dateTrigger'), datePop=document.getElementById('datePop');
+  const timeTrigger=document.getElementById('timeTrigger'), timePop=document.getElementById('timePop');
+  function closeAll(){
+    datePop.classList.remove('open'); timePop.classList.remove('open');
+    dateTrigger.classList.remove('active'); timeTrigger.classList.remove('active');
+    dateTrigger.setAttribute('aria-expanded','false'); timeTrigger.setAttribute('aria-expanded','false');
+  }
+  function toggle(trigger,pop){
+    const isOpen=pop.classList.contains('open');
+    closeAll();
+    if(!isOpen){ pop.classList.add('open'); trigger.classList.add('active'); trigger.setAttribute('aria-expanded','true'); }
+  }
+  dateTrigger.addEventListener('click',e=>{e.stopPropagation();toggle(dateTrigger,datePop);});
+  timeTrigger.addEventListener('click',e=>{e.stopPropagation();toggle(timeTrigger,timePop);});
+  document.addEventListener('click',e=>{ if(!e.target.closest('.picker')) closeAll(); });
 
-  document.getElementById("score-label").textContent = state.score;
-  document.getElementById("next-btn").style.display = "inline-block";
-  document.getElementById("next-btn").textContent = state.current === state.questions.length - 1 ? "Ergebnis ansehen →" : "Naechste Frage →";
-}
-
-function nextQuestion() {
-  state.current++;
-  window.scrollTo(0, 0);
-  if (state.current >= state.questions.length) showResults();
-  else showQuestion();
-}
-
-function showResults() {
-  document.getElementById("quiz-screen").style.display = "none";
-  document.getElementById("result-screen").style.display = "block";
-  window.scrollTo(0, 0);
-  const total = state.questions.length;
-  const pct = Math.round((state.score / total) * 100);
-  document.getElementById("final-score").textContent = state.score + " / " + total;
-  document.getElementById("final-percentage").textContent = pct + "% richtig";
-
-  let tag = "";
-  if (pct >= 90) tag = "Hervorragend! Du bist sehr gut vorbereitet.";
-  else if (pct >= 75) tag = "Sehr gut! Mit etwas Wiederholung wirst du glaenzen.";
-  else if (pct >= 60) tag = "Solides Wissen – arbeite noch an den Luecken.";
-  else if (pct >= 40) tag = "Du hast eine Basis, aber sieh dir die Unterlagen nochmal an.";
-  else tag = "Es lohnt sich, die Zusammenfassungen nochmals durchzuarbeiten.";
-  document.getElementById("result-tagline").textContent = tag;
-
-  const breakdown = {};
-  state.answers.forEach(a => {
-    const t = a.question.topic;
-    if (!breakdown[t]) breakdown[t] = { correct: 0, total: 0 };
-    breakdown[t].total++;
-    if (a.correct) breakdown[t].correct++;
+  // ---------- Submit ----------
+  const form=document.getElementById('bookingForm'), okMsg=document.getElementById('okMsg');
+  form.addEventListener('submit',async function(e){
+    if(!dateInput.value || !timeInput.value){
+      e.preventDefault();
+      alert('Bitte Wunschdatum und Wunschzeit wählen.');
+      return;
+    }
+    if(form.action.includes('REPLACE_WITH_FORM_ID')){
+      e.preventDefault();
+      alert('Hinweis fuer den Betreiber: Bitte zuerst die Formspree-ID in der action-URL eintragen, dann funktioniert der E-Mail-Versand.');
+      return;
+    }
+    e.preventDefault();
+    const btn=form.querySelector('.submit');
+    btn.disabled=true; btn.textContent='Wird gesendet...';
+    try{
+      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      if(res.ok){ form.reset(); selectedDate=null; renderCal();
+        dateVal.textContent='Datum wählen'; dateVal.classList.remove('set');
+        timeVal.textContent='Zeit wählen'; timeVal.classList.remove('set');
+        slotsWrap.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));
+        okMsg.classList.add('show'); btn.textContent='Gesendet'; }
+      else{ btn.disabled=false; btn.textContent='Anfrage senden'; alert('Senden hat nicht geklappt. Bitte spaeter erneut versuchen.'); }
+    }catch{ btn.disabled=false; btn.textContent='Anfrage senden'; alert('Verbindungsfehler. Bitte spaeter erneut versuchen.'); }
   });
-  const bdEl = document.getElementById("topic-breakdown");
-  bdEl.innerHTML = "";
-  Object.entries(breakdown).forEach(([topic, stats]) => {
-    const pct = Math.round((stats.correct / stats.total) * 100);
-    const div = document.createElement("div");
-    div.className = "breakdown-card";
-    div.innerHTML = '<div style="font-size: 12px; color: var(--text-secondary);">' + TOPIC_NAMES[topic] + '</div>' +
-                    '<div style="font-size: 16px; font-weight: 600; margin-top: 4px;">' + stats.correct + ' / ' + stats.total + ' (' + pct + '%)</div>';
-    bdEl.appendChild(div);
-  });
-
-  const wrong = state.answers.filter(a => !a.correct);
-  document.getElementById("review-btn").style.display = wrong.length > 0 ? "inline-block" : "none";
-}
-
-function reviewWrong() {
-  const wrong = state.answers.filter(a => !a.correct);
-  const section = document.getElementById("review-section");
-  section.style.display = "block";
-  section.innerHTML = '<h2 style="margin: 0 0 16px;">Falsche Antworten ueberpruefen</h2>';
-  wrong.forEach((a) => {
-    const card = document.createElement("div");
-    card.className = "review-card";
-    card.innerHTML =
-      '<div class="review-card-topic">' + TOPIC_NAMES[a.question.topic] + '</div>' +
-      '<div class="review-card-q">' + a.question.q + '</div>' +
-      '<div class="review-card-yours">✗ Deine Antwort: ' + a.question.options[a.picked] + '</div>' +
-      '<div class="review-card-correct">✓ Richtig: ' + a.question.options[a.question.correct] + '</div>' +
-      '<div class="review-card-explanation">' + a.question.explanation + '</div>';
-    section.appendChild(card);
-  });
-  document.getElementById("review-btn").style.display = "none";
-}
-
-function quitQuiz() { location.reload(); }
 </script>
 </body>
 </html>
