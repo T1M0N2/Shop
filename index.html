@@ -198,7 +198,7 @@
   <div class="wrap">
     <h2>Termin buchen</h2>
     <p class="sub">Anfrage ausfüllen — Marlon meldet sich zur Bestätigung.</p>
-    <form id="bookingForm" action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST">
+    <form id="bookingForm">
       <div class="field">
         <label for="vorname">Vorname</label>
         <input type="text" id="vorname" name="Vorname" placeholder="Max" required>
@@ -246,11 +246,11 @@
         </div>
       </div>
 
-      <input type="hidden" name="Wunschdatum" id="dateInput" required>
-      <input type="hidden" name="Wunschzeit" id="timeInput" required>
+      <input type="hidden" name="Wunschdatum" id="dateInput">
+      <input type="hidden" name="Wunschzeit" id="timeInput">
       <input type="hidden" name="_subject" value="Neue Terminanfrage - Marlon Specht">
       <button type="submit" class="submit">Anfrage senden</button>
-      <div class="ok-msg" id="okMsg">Danke. Deine Anfrage ist bei Marlon - er meldet sich zur Bestätigung.</div>
+      <div class="ok-msg" id="okMsg">Fast geschafft — dein Mailprogramm öffnet sich. Bitte die fertige Mail noch <b>absenden</b>, dann meldet sich Marlon zur Bestätigung.</div>
     </form>
   </div>
 </section>
@@ -346,32 +346,41 @@
   timeTrigger.addEventListener('click',e=>{e.stopPropagation();toggle(timeTrigger,timePop);});
   document.addEventListener('click',e=>{ if(!e.target.closest('.picker')) closeAll(); });
 
-  // ---------- Submit ----------
+  // ---------- Submit (mailto: – öffnet das Mailprogramm des Besuchers) ----------
+  const BARBER_EMAIL = 'timon.bauman@gmx.ch';
   const form=document.getElementById('bookingForm'), okMsg=document.getElementById('okMsg');
-  form.addEventListener('submit',async function(e){
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
     if(!dateInput.value || !timeInput.value){
-      e.preventDefault();
       alert('Bitte Wunschdatum und Wunschzeit wählen.');
       return;
     }
-    if(form.action.includes('REPLACE_WITH_FORM_ID')){
-      e.preventDefault();
-      alert('Hinweis fuer den Betreiber: Bitte zuerst die Formspree-ID in der action-URL eintragen, dann funktioniert der E-Mail-Versand.');
-      return;
-    }
-    e.preventDefault();
-    const btn=form.querySelector('.submit');
-    btn.disabled=true; btn.textContent='Wird gesendet...';
-    try{
-      const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-      if(res.ok){ form.reset(); selectedDate=null; renderCal();
-        dateVal.textContent='Datum wählen'; dateVal.classList.remove('set');
-        timeVal.textContent='Zeit wählen'; timeVal.classList.remove('set');
-        slotsWrap.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));
-        okMsg.classList.add('show'); btn.textContent='Gesendet'; }
-      else{ btn.disabled=false; btn.textContent='Anfrage senden'; alert('Senden hat nicht geklappt. Bitte spaeter erneut versuchen.'); }
-    }catch{ btn.disabled=false; btn.textContent='Anfrage senden'; alert('Verbindungsfehler. Bitte spaeter erneut versuchen.'); }
+    const vorname  = document.getElementById('vorname').value.trim();
+    const nachname = document.getElementById('nachname').value.trim();
+    const telefon  = document.getElementById('telefon').value.trim();
+    const datum    = dateVal.textContent; // bereits formatiert TT.MM.JJJJ
+    const zeit     = timeInput.value;
+
+    const subject = 'Neue Terminanfrage – Marlon Specht';
+    const body =
+      'Hallo Marlon,\n\nich möchte einen Termin für einen Haarschnitt anfragen:\n\n' +
+      'Name:    ' + vorname + ' ' + nachname + '\n' +
+      'Telefon: ' + telefon + '\n' +
+      'Datum:   ' + datum + '\n' +
+      'Zeit:    ' + zeit + '\n\n' +
+      'Bitte um kurze Bestätigung. Danke!';
+
+    const mailto = 'mailto:' + BARBER_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    // Mailprogramm öffnen
+    window.location.href = mailto;
+
+    // Bestätigungshinweis anzeigen (Mail muss im Programm noch gesendet werden)
+    okMsg.classList.add('show');
   });
+
 </script>
 </body>
 </html>
