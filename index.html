@@ -246,11 +246,14 @@
         </div>
       </div>
 
+      <input type="hidden" name="access_key" value="4ff51dae-ec9a-45f3-8991-8f9716a9aa1c">
+      <input type="hidden" name="subject" value="Neue Terminanfrage – Marlon Specht">
+      <input type="hidden" name="from_name" value="Marlon Specht Website">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <input type="hidden" name="Wunschdatum" id="dateInput">
       <input type="hidden" name="Wunschzeit" id="timeInput">
-      <input type="hidden" name="_subject" value="Neue Terminanfrage - Marlon Specht">
       <button type="submit" class="submit">Anfrage senden</button>
-      <div class="ok-msg" id="okMsg">Fast geschafft — dein Mailprogramm öffnet sich. Bitte die fertige Mail noch <b>absenden</b>, dann meldet sich Marlon zur Bestätigung.</div>
+      <div class="ok-msg" id="okMsg">Danke! Deine Anfrage ist bei Marlon — er meldet sich zur Bestätigung.</div>
     </form>
   </div>
 </section>
@@ -312,7 +315,7 @@
   const slotsWrap = document.getElementById('slots');
   const timeVal = document.getElementById('timeVal');
   const timeInput = document.getElementById('timeInput');
-  const times = ['07:30'];
+  const times = [];
   let mins = 8*60; // ab 08:00
   while(mins <= 19*60){
     times.push(pad(Math.floor(mins/60))+':'+pad(mins%60));
@@ -346,39 +349,37 @@
   timeTrigger.addEventListener('click',e=>{e.stopPropagation();toggle(timeTrigger,timePop);});
   document.addEventListener('click',e=>{ if(!e.target.closest('.picker')) closeAll(); });
 
-  // ---------- Submit (mailto: – öffnet das Mailprogramm des Besuchers) ----------
-  const BARBER_EMAIL = 'timon.bauman@gmx.ch';
+  // ---------- Submit (Web3Forms – Versand ohne Backend, Mail an dein GMX) ----------
   const form=document.getElementById('bookingForm'), okMsg=document.getElementById('okMsg');
-  form.addEventListener('submit',function(e){
+  form.addEventListener('submit',async function(e){
     e.preventDefault();
     if(!dateInput.value || !timeInput.value){
       alert('Bitte Wunschdatum und Wunschzeit wählen.');
       return;
     }
-    const vorname  = document.getElementById('vorname').value.trim();
-    const nachname = document.getElementById('nachname').value.trim();
-    const telefon  = document.getElementById('telefon').value.trim();
-    const datum    = dateVal.textContent; // bereits formatiert TT.MM.JJJJ
-    const zeit     = timeInput.value;
-
-    const subject = 'Neue Terminanfrage – Marlon Specht';
-    const body =
-      'Hallo Marlon,\n\nich möchte einen Termin für einen Haarschnitt anfragen:\n\n' +
-      'Name:    ' + vorname + ' ' + nachname + '\n' +
-      'Telefon: ' + telefon + '\n' +
-      'Datum:   ' + datum + '\n' +
-      'Zeit:    ' + zeit + '\n\n' +
-      'Bitte um kurze Bestätigung. Danke!';
-
-    const mailto = 'mailto:' + BARBER_EMAIL +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
-
-    // Mailprogramm öffnen
-    window.location.href = mailto;
-
-    // Bestätigungshinweis anzeigen (Mail muss im Programm noch gesendet werden)
-    okMsg.classList.add('show');
+    const btn=form.querySelector('.submit');
+    btn.disabled=true; btn.textContent='Wird gesendet...';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data=await res.json();
+      if(data.success){
+        form.reset(); selectedDate=null; renderCal();
+        dateVal.textContent='Datum wählen'; dateVal.classList.remove('set');
+        timeVal.textContent='Zeit wählen'; timeVal.classList.remove('set');
+        slotsWrap.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));
+        okMsg.classList.add('show'); btn.textContent='Gesendet';
+      }else{
+        btn.disabled=false; btn.textContent='Anfrage senden';
+        alert('Senden hat nicht geklappt. Bitte später erneut versuchen.');
+      }
+    }catch{
+      btn.disabled=false; btn.textContent='Anfrage senden';
+      alert('Verbindungsfehler. Bitte später erneut versuchen.');
+    }
   });
 
 </script>
