@@ -133,66 +133,33 @@
   .map-foot a:hover{opacity:.9}
   .map-foot a:active{transform:scale(.97)}
 
-  /* BOOKING */
+    /* BOOKING / CALENDLY */
   .booking{padding:56px 0 100px}
   .booking h2{font-size:clamp(1.8rem,5vw,2.3rem);text-align:center;margin-bottom:10px}
   .booking .sub{text-align:center;color:var(--muted);margin-bottom:40px;font-size:1rem}
-  form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .field{display:flex;flex-direction:column;gap:9px}
-  .field.full{grid-column:1/-1}
-  label{font-size:.82rem;font-weight:500;color:var(--muted);padding-left:2px}
-  input[type=text],input[type=tel]{
-    background:var(--surface-2);border:1px solid var(--line);color:var(--text);
-    padding:15px 16px;border-radius:14px;font-family:inherit;font-size:1rem;transition:border-color .2s,background .2s;
+
+  /* Calendly Widget Container */
+  .calendly-wrapper{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    padding:24px;
+    box-shadow:0 8px 32px rgba(0,0,0,.3);
   }
-  input[type=text]:focus,input[type=tel]:focus{outline:none;border-color:#4a4a52;background:var(--surface-3)}
-  input::placeholder{color:var(--faint)}
 
-  .picker{position:relative}
-  .picker-trigger{
-    width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);color:var(--text);
-    padding:15px 16px;border-radius:14px;font-family:inherit;font-size:1rem;cursor:pointer;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;transition:border-color .2s,background .2s;
+  .calendly-inline-widget{
+    min-width:100%;
+    border-radius:12px !important;
+    overflow:hidden;
   }
-  .picker-trigger:hover{border-color:#3a3a42}
-  .picker-trigger.active{border-color:#4a4a52;background:var(--surface-3)}
-  .picker-trigger .val{color:var(--faint);transition:color .2s}
-  .picker-trigger .val.set{color:var(--text)}
-  .picker-trigger .chev{flex-shrink:0;transition:transform .25s ease;opacity:.6}
-  .picker-trigger.active .chev{transform:rotate(180deg)}
 
-  .pop{
-    position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:30;
-    background:var(--surface);border:1px solid var(--line);border-radius:18px;
-    padding:16px;box-shadow:0 18px 50px rgba(0,0,0,.55);
-    opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;transition:opacity .2s,transform .2s;transform-origin:top;
+  @media(max-width:640px){
+    .calendly-wrapper{
+      padding:16px;
+    }
   }
-  .pop.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-
-  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-  .cal-title{font-weight:600;font-size:.95rem}
-  .cal-nav{display:flex;gap:6px}
-  .cal-nav button{width:32px;height:32px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s}
-  .cal-nav button:hover{background:var(--surface-3);border-color:#3a3a42}
-  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-  .cal-dow{text-align:center;font-size:.68rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;padding:4px 0;font-weight:600}
-  .cal-day{aspect-ratio:1;border:none;background:transparent;color:var(--text);border-radius:10px;font-family:inherit;font-size:.9rem;cursor:pointer;transition:background .15s;display:grid;place-items:center}
-  .cal-day:hover:not(:disabled){background:var(--surface-3)}
-  .cal-day:disabled{color:#3a3a40;cursor:default}
-  .cal-day.sel{background:var(--text);color:#000;font-weight:600}
-  .cal-day.empty{cursor:default}
-
-  .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .slot{padding:11px 0;text-align:center;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:11px;font-family:inherit;font-size:.92rem;cursor:pointer;transition:background .15s,border-color .15s}
-  .slot:hover{background:var(--surface-3);border-color:#3a3a42}
-  .slot.sel{background:var(--text);color:#000;border-color:var(--text);font-weight:600}
-
-  .submit{grid-column:1/-1;background:var(--text);color:#000;border:none;margin-top:8px;padding:17px;border-radius:999px;font-family:inherit;font-weight:600;font-size:1.02rem;cursor:pointer;transition:opacity .2s,transform .12s;box-shadow:0 4px 24px rgba(255,255,255,.1)}
-  .submit:hover{opacity:.9}
-  .submit:active{transform:scale(.99)}
-  .submit:disabled{opacity:.5;cursor:wait}
-  .ok-msg{grid-column:1/-1;background:var(--surface-2);border:1px solid var(--line);color:var(--text);padding:16px;border-radius:14px;font-size:.95rem;text-align:center;display:none}
-  .ok-msg.show{display:block}
 
   footer{padding:36px 0;border-top:1px solid var(--line-soft);text-align:center}
   footer p{color:var(--faint);font-size:.82rem}
@@ -280,67 +247,16 @@
   </div>
 </section>
 
-<section class="booking" id="termin">
+<section class="booking" id="booking">
   <div class="wrap">
-    <h2 class="graf">Termin buchen</h2>
-    <p class="sub">Anfrage ausfüllen — Marlon meldet sich zur Bestätigung.</p>
-    <form id="bookingForm">
-      <div class="field">
-        <label for="vorname">Vorname</label>
-        <input type="text" id="vorname" name="Vorname" placeholder="Max" required>
-      </div>
-      <div class="field">
-        <label for="nachname">Nachname</label>
-        <input type="text" id="nachname" name="Nachname" placeholder="Mustermann" required>
-      </div>
-      <div class="field full">
-        <label for="telefon">Telefon</label>
-        <input type="tel" id="telefon" name="Telefon" placeholder="079 123 45 67" required>
-      </div>
+    <h2 class="sec-title graf">Termin buchen</h2>
+    <p class="sub">Wähle einen verfügbaren Termin</p>
 
-      <div class="field">
-        <label>Wunschdatum</label>
-        <div class="picker">
-          <button type="button" class="picker-trigger" id="dateTrigger" aria-haspopup="true" aria-expanded="false">
-            <span class="val" id="dateVal">Datum wählen</span>
-            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="pop" id="datePop">
-            <div class="cal-head">
-              <span class="cal-title" id="calTitle"></span>
-              <div class="cal-nav">
-                <button type="button" id="prevMonth" aria-label="Vorheriger Monat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                <button type="button" id="nextMonth" aria-label="Nächster Monat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
-              </div>
-            </div>
-            <div class="cal-grid" id="calDow"></div>
-            <div class="cal-grid" id="calDays" style="margin-top:4px"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Wunschzeit</label>
-        <div class="picker">
-          <button type="button" class="picker-trigger" id="timeTrigger" aria-haspopup="true" aria-expanded="false">
-            <span class="val" id="timeVal">Zeit wählen</span>
-            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="pop" id="timePop">
-            <div class="slots" id="slots"></div>
-          </div>
-        </div>
-      </div>
-
-      <input type="hidden" name="access_key" value="4ff51dae-ec9a-45f3-8991-8f9716a9aa1c">
-      <input type="hidden" name="subject" value="Neue Terminanfrage – Marlon Cutzz">
-      <input type="hidden" name="from_name" value="Marlon Cutzz Website">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-      <input type="hidden" name="Wunschdatum" id="dateInput">
-      <input type="hidden" name="Wunschzeit" id="timeInput">
-      <button type="submit" class="submit">Anfrage senden</button>
-      <div class="ok-msg" id="okMsg">Danke! Deine Anfrage ist bei Marlon — er meldet sich zur Bestätigung.</div>
-    </form>
+    <!-- Calendly Widget -->
+    <div class="calendly-wrapper">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/timon-bauman/30min?hide_event_type_details=1&hide_gdpr_block=1" style="min-width:320px;height:700px;"></div>
+    </div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </div>
 </section>
 
