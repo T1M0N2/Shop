@@ -138,28 +138,52 @@
   .booking h2{font-size:clamp(1.8rem,5vw,2.3rem);text-align:center;margin-bottom:10px}
   .booking .sub{text-align:center;color:var(--muted);margin-bottom:40px;font-size:1rem}
 
-  /* Calendly Widget Container */
+/***** BOOKING / CAL.COM *****/
+
+.booking{
+  padding:56px 0 100px;
+}
+
+.booking h2{
+  font-size:clamp(1.8rem,5vw,2.3rem);
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.booking .sub{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:40px;
+  font-size:1rem;
+}
+
+.calendly-wrapper{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  padding:24px;
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+
+.calendly-wrapper iframe{
+  width:100%;
+  height:800px;
+  border:none;
+  border-radius:12px;
+  display:block;
+}
+
+@media(max-width:640px){
   .calendly-wrapper{
-    position:relative;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:20px;
-    overflow:hidden;
-    padding:24px;
-    box-shadow:0 8px 32px rgba(0,0,0,.3);
+    padding:16px;
   }
 
-  .calendly-inline-widget{
-    min-width:100%;
-    border-radius:12px !important;
-    overflow:hidden;
+  .calendly-wrapper iframe{
+    height:700px;
   }
-
-  @media(max-width:640px){
-    .calendly-wrapper{
-      padding:16px;
-    }
-  }
+}
 
   footer{padding:36px 0;border-top:1px solid var(--line-soft);text-align:center}
   footer p{color:var(--faint);font-size:.82rem}
@@ -248,15 +272,18 @@
 </section>
 
 <section class="booking" id="booking">
-  <div class="wrap">
+ <div class="wrap">
     <h2 class="sec-title graf">Termin buchen</h2>
-    <p class="sub">Wähle einen verfügbaren Termin</p>
+    <p class="sub">Wähle deinen Wunschtermin bei Marlon Cutzz.</p>
 
-    <!-- Calendly Widget -->
     <div class="calendly-wrapper">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/timon-bauman/30min?hide_event_type_details=1&hide_gdpr_block=1" style="min-width:320px;height:700px;"></div>
+      <iframe
+        src="https://cal.com/marlonbarber/45min"
+        title="Termin buchen"
+        loading="lazy"
+        allow="camera; microphone; fullscreen"
+      ></iframe>
     </div>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </div>
 </section>
 
